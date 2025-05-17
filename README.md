@@ -1,23 +1,18 @@
-# Web Teknolojileri Dersi Proje Ödevi
+# Web Teknolojileri Projesi
 
-Bu repo, 2024-2025 Bahar Dönemi Web Teknolojileri dersi için hazırladığım kişisel web sitesi projesini içermektedir.
+**Öğrenci:** Cemal Koparan  
+**Öğrenci No:** b241210047  
+**Ders:** Web Teknolojileri  
+**Dönem:** 2024-2025 Bahar  
 
-## İçerik
+## Proje Açıklaması
 
-- Hakkında Sayfası
-- Özgeçmiş Sayfası
-- Şehrim (Mersin) Sayfası
-- Mirasımız/Takımımız Sayfası
-- İlgi Alanlarım Sayfası
-- API Kullanımı
-- Login Sayfası
-- İletişim Sayfası
+Bu repo, 2024-2025 Bahar Dönemi Web Teknolojileri dersi için hazırladığım kişisel web sitesi projesini içermektedir. Projede HTML, CSS, JavaScript ve Bootstrap kullanılarak kişisel bir web sitesi geliştirilmiştir.
 
-## Kullanılan Teknolojiler
+## Proje Özellikleri
 
-- HTML
-- CSS
-- JavaScript
-- Bootstrap
-- PHP
-- API Entegrasyonu
+- Responsive tasarım
+- Bootstrap 5 kullanımı
+- JavaScript API entegrasyonu
+- PHP ile giriş sistemi
+- İletişim formu ve doğrulama
