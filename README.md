@@ -1,13 +1,12 @@
 # Web Teknolojileri Projesi
 
-**Öğrenci:** Cemal Koparan  
-**Öğrenci No:** b241210047  
+**Öğrenci:** Cemal Koparan   
 **Ders:** Web Teknolojileri  
 **Dönem:** 2024-2025 Bahar  
 
 ## Proje Açıklaması
 
-Bu repo, 2024-2025 Bahar Dönemi Web Teknolojileri dersi için hazırladığım kişisel web sitesi projesini içermektedir. Projede HTML, CSS, JavaScript ve Bootstrap kullanılarak kişisel bir web sitesi geliştirilmiştir.
+Bu repo, 2024-2025 Bahar Dönemi Web Teknolojileri dersi için hazırladığım kişisel web sitesi projesini içermektedir. Projede HTML, CSS, JavaScript ve Bootstrap kullanılarak kişisel bir web sitesi geliştirdim.
 
 ## Proje Özellikleri
 
