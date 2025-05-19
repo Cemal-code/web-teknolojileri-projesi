@@ -4,7 +4,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
     
     // Beklenen kullanıcı bilgileri 
-    $expected_email = "b241210047@sakarya.edu.tr"; // EMAILINIZ
+    $expected_email = "cemal.koparan@sakarya.edu.tr"; // EMAILINIZ
     $expected_password = "b241210047"; // SIFRENIZ (öğrenci numaranız)
     
     if ($email === $expected_email && $password === $expected_password) {

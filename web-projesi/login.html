@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Giriþ Yap</title>
+    <title>GiriÅŸ Yap</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <!-- Özel Stil -->
+    <!-- Ã–zel Stil -->
     <style>
         body {
             background-color: #f8f9fa;
@@ -22,51 +22,51 @@
     </style>
 </head>
 <body>
-    <!-- NAVBAR (Tüm sayfalarda ayný) -->
+    <!-- NAVBAR (TÃ¼m sayfalarda aynÄ±) -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="index.html">ADINIZ SOYADINIZ</a>
+            <a class="navbar-brand" href="index.html">Cemal Koparan</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Hakkýmda</a></li>
-                    <li class="nav-item"><a class="nav-link" href="cv.html">Özgeçmiþ</a></li>
-                    <li class="nav-item"><a class="nav-link" href="sehrim.html">Þehrim</a></li>
-                    <li class="nav-item"><a class="nav-link" href="mirasimiz.html">Mirasýmýz</a></li>
-                    <li class="nav-item"><a class="nav-link" href="ilgi-alanlarim.html">Ýlgi Alanlarým</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="login.php">Giriþ Yap</a></li>
-                    <li class="nav-item"><a class="nav-link" href="iletisim.html">Ýletiþim</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html">HakkÄ±mda</a></li>
+                    <li class="nav-item"><a class="nav-link" href="cv.html">Ã–zgeÃ§miÅŸ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="sehrim.html">Åžehrim</a></li>
+                    <li class="nav-item"><a class="nav-link" href="mirasimiz.html">MirasÄ±mÄ±z</a></li>
+                    <li class="nav-item"><a class="nav-link" href="ilgi-alanlarim.html">Ä°lgi AlanlarÄ±m</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="login.php">GiriÅŸ Yap</a></li>
+                    <li class="nav-item"><a class="nav-link" href="iletisim.html">Ä°letiÅŸim</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- GÝRÝÞ FORMU -->
+    <!-- GÄ°RÄ°Åž FORMU -->
     <div class="container mt-5">
         <div class="login-card card p-4">
-            <h2 class="text-center mb-4">Öðrenci Giriþi</h2>
+            <h2 class="text-center mb-4">Ã–ÄŸrenci GiriÅŸi</h2>
 
             <?php
-            // Hata mesajý gösterimi
+            // Hata mesajÄ± gÃ¶sterimi
             if (isset($_GET['error'])) {
-            echo '<div class="alert alert-danger">Hatalý giriþ! Lütfen bilgilerinizi kontrol edin.</div>';
+            echo '<div class="alert alert-danger">HatalÄ± giriÅŸ! LÃ¼tfen bilgilerinizi kontrol edin.</div>';
             }
             ?>
 
             <form action="login-check.php" method="post">
                 <div class="mb-3">
-                    <label for="email" class="form-label">Öðrenci Email</label>
+                    <label for="email" class="form-label">Ã–ÄŸrenci Email</label>
                     <input type="email" class="form-control" id="email" name="email"
                            placeholder="b241210047@sakarya.edu.tr" required>
                 </div>
                 <div class="mb-3">
-                    <label for="password" class="form-label">Þifre</label>
+                    <label for="password" class="form-label">Åžifre</label>
                     <input type="password" class="form-control" id="password" name="password"
                            placeholder="b241210047" required>
                 </div>
-                <button type="submit" class="btn btn-primary w-100">Giriþ Yap</button>
+                <button type="submit" class="btn btn-primary w-100">GiriÅŸ Yap</button>
             </form>
         </div>
     </div>
