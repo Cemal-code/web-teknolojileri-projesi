@@ -15,3 +15,4 @@ Bu repo, 2024-2025 Bahar Dönemi Web Teknolojileri dersi için hazırladığım 
 - JavaScript API entegrasyonu
 - PHP ile giriş sistemi
 - İletişim formu ve doğrulama
+- API kullanımı
