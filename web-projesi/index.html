@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hakkımda | Cemal Koparan</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3a0ca3;
+            --accent-color: #f72585;
+            --light-bg: #f8f9fa;
+        }
+
+        body {
+            padding-top: 70px;
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--light-bg);
+            color: #333;
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 120px 0;
+            margin-bottom: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+            .hero-section::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/><circle cx="20" cy="80" r="0.5" fill="white" opacity="0.1"/><circle cx="90" cy="30" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>') repeat;
+                pointer-events: none;
+            }
+
+        .hero-title {
+            font-family: 'Pacifico', cursive;
+            font-size: 3.2rem;
+            margin-bottom: 25px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            font-weight: 300;
+            opacity: 0.95;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .profile-img {
+            width: 240px;
+            height: 240px;
+            object-fit: cover;
+            border: 6px solid rgba(255,255,255,0.9);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3), 0 5px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+            animation: fadeIn 1s ease-out;
+        }
+
+            .profile-img:hover {
+                transform: scale(1.05);
+            }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-title {
+            position: relative;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+        }
+
+            .section-title:after {
+                content: "";
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                width: 60px;
+                height: 4px;
+                background: var(--accent-color);
+            }
+
+        .about-section {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            padding: 50px;
+            margin-bottom: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+            .about-section::before {
+                content: '';
+                position: absolute;
+                top: -50%;
+                right: -50%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(45deg, rgba(102, 126, 234, 0.05), rgba(118, 75, 162, 0.05));
+                border-radius: 50%;
+                pointer-events: none;
+            }
+
+        .about-text {
+            position: relative;
+            z-index: 2;
+        }
+
+            .about-text p {
+                font-size: 1.1rem;
+                line-height: 1.8;
+                color: #555;
+                margin-bottom: 20px;
+            }
+
+            .about-text .lead {
+                font-size: 1.3rem;
+                color: #333;
+                font-weight: 400;
+                border-left: 4px solid #667eea;
+                padding-left: 20px;
+                margin-bottom: 30px;
+                background: rgba(102, 126, 234, 0.05);
+                padding: 20px;
+                border-radius: 0 10px 10px 0;
+            }
+
+        .info-card {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border: none;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            color: white;
+            position: relative;
+        }
+
+            .info-card::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: linear-gradient(45deg, rgba(255,255,255,0.1), transparent);
+                pointer-events: none;
+            }
+
+            .info-card .card-body {
+                padding: 40px;
+                position: relative;
+                z-index: 2;
+            }
+
+            .info-card .card-title {
+                font-size: 1.5rem;
+                margin-bottom: 30px;
+                text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+            }
+
+            .info-card .list-group-item {
+                background: rgba(255,255,255,0.1);
+                border: none;
+                border-bottom: 1px solid rgba(255,255,255,0.2);
+                color: white;
+                padding: 15px 0;
+                backdrop-filter: blur(10px);
+            }
+
+                .info-card .list-group-item:last-child {
+                    border-bottom: none;
+                }
+
+                .info-card .list-group-item i {
+                    color: rgba(255,255,255,0.9);
+                    width: 20px;
+                }
+
+        .interest-icon {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+        }
+
+        .interest-card {
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+            height: 100%;
+            background: white;
+        }
+
+            .interest-card:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            }
+
+        @media (max-width: 768px) {
+            .profile-img {
+                width: 200px;
+                height: 200px;
+                margin-bottom: 20px;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .hero-description {
+                font-size: 1rem;
+            }
+
+            .about-section {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Cemal Koparan</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link active" href="index.html">Hakkımda</a></li>
+                    <li class="nav-item"><a class="nav-link" href="cv.html">Özgeçmiş</a></li>
+                    <li class="nav-item"><a class="nav-link" href="sehrim.html">Şehrim</a></li>
+                    <li class="nav-item"><a class="nav-link" href="mirasimiz.html">Mirasımız</a></li>
+                    <li class="nav-item"><a class="nav-link" href="ilgi-alanlarim.html">İlgi Alanlarım</a></li>
+                    <li class="nav-item"><a class="nav-link" href="login.php">Giriş Yap</a></li>
+                    <li class="nav-item"><a class="nav-link" href="iletisim.html">İletişim</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-section">
+        <div class="container text-center">
+            <div class="row align-items-center">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <img src="assets/img/profil.jpg" alt="Profil Fotoğrafı" class="profile-img rounded-circle">
+                </div>
+                <div class="col-md-8">
+                    <h1 class="hero-title">Merhaba! 👋</h1>
+                    <p class="hero-subtitle">Ben <strong>Cemal Koparan</strong></p>
+                    <p class="hero-description">Sakarya Üniversitesi Bilgisayar Mühendisliği öğrencisi, teknoloji tutkunu ve yaratıcı problem çözücü</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hakkımda Section -->
+    <section class="container mb-5">
+        <div class="about-section">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="about-text">
+                        <h2 class="section-title">Merhaba, ben Cemal! </h2>
+                        <p class="lead">Teknolojinin sınırlarını keşfetmeyi seven, yenilikçi projeler geliştiren ve sürekli öğrenme yolculuğunda olan bir bilgisayar mühendisliği öğrencisiyim.</p>
+
+                        <p>Mersin'in güneş dolu sokaklarında büyüdüm, şimdi ise eğitim hayatımı Sakarya'da sürdürüyorum. Kod yazmaktan tutun da yeni teknolojileri keşfetmeye kadar her şey ilgimi çekiyor.</p>
+
+                        
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card info-card h-100">
+                        <div class="card-body">
+                            <h3 class="card-title"><i class="fas fa-user-circle me-2"></i>Kişisel Bilgiler</h3>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <i class="fas fa-birthday-cake me-3"></i>
+                                    <strong>Doğum:</strong> 5 Ekim 2005
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-map-marker-alt me-3"></i>
+                                    <strong>Memleket:</strong> Mersin (Güneşli şehir! ☀️)
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-envelope me-3"></i>
+                                    <strong>E-posta:</strong> cemal.koparan@ogr.sakarya.edu.tr
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-phone me-3"></i>
+                                    <strong>Telefon:</strong> 0552 202 46 33
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-graduation-cap me-3"></i>
+                                    <strong>Eğitim:</strong> Sakarya Üniversitesi<br>
+                                    <small>Bilgisayar Mühendisliği</small>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hobilerim Section -->
+    <section class="container mb-5">
+        <h2 class="section-title text-center">İlgi Alanlarım</h2>
+        <div class="row">
+            <!-- Hobi 1 -->
+            <div class="col-md-6 mb-4">
+                <div class="interest-card">
+                    <div class="card-body text-center">
+                        <div class="interest-icon">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <h3>Video Oyunları</h3>
+                        <p>Favori oyunlarım arasında Valorant, FIFA ve The Witcher serisi bulunuyor. Özellikle strateji ve RPG oyunlarını seviyorum.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hobi 2 -->
+            <div class="col-md-6 mb-4">
+                <div class="interest-card">
+                    <div class="card-body text-center">
+                        <div class="interest-icon">
+                            <i class="fas fa-film"></i>
+                        </div>
+                        <h3>Dizi & Film İzlemek</h3>
+                        <p>Bilim kurgu ve fantastik türündeki yapımları takip ediyorum. En sevdiğim diziler arasında Breaking Bad, Black Mirror ve The Walking Dead var.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sevdiğim Oyunlar Section -->
+    <section class="container mb-5">
+        <h2 class="section-title text-center">Sevdiğim Oyunlar</h2>
+        <div class="row">
+            <!-- Oyun 1 -->
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="interest-card">
+                    <img src="assets/img/metro.jpg" class="card-img-top" alt="Metro serisi">
+                    <div class="card-body">
+                        <h3>Metro Serisi</h3>
+                        <p class="card-text">Dmitriy Glukhovsky'nin Metro kitap serisinden uyarlanan video oyun serisidir.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Oyun 2 -->
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="interest-card">
+                    <img src="assets/img/ds.jpg" class="card-img-top" alt="Dark Souls">
+                    <div class="card-body">
+                        <h3>Dark Souls</h3>
+                        <p class="card-text">FromSoftware tarafından geliştirilen zorlu aksiyon RPG serisi. Etkileyici atmosferi ve yüksek zorluk seviyesiyle ünlü.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Oyun 3 -->
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="interest-card">
+                    <img src="assets/img/er.jpg" class="card-img-top" alt="Elden Ring">
+                    <div class="card-body">
+                        <h3>Elden Ring</h3>
+                        <p class="card-text">Etkileyici hikayesi ve geniş dünyasıyla favori aksiyon RPG oyunum.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Oyun 4 -->
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="interest-card">
+                    <img src="assets/img/csgo.jpg" class="card-img-top" alt="CS:GO">
+                    <div class="card-body">
+                        <h3>League of Legends</h3>
+                        <p class="card-text">Klasikleşmiş MOBA oyunu. Arkadaşlarımla birlikte oynamayı seviyorum.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-dark text-white text-center py-4">
+        <div class="container">
+            <p class="mb-2">Cemal Koparan - Kişisel Web Sitesi</p>
+
+        </div>
+    </footer>
+
+    <!-- Font -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
