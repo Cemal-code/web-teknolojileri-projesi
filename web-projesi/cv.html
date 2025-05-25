@@ -5,50 +5,116 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Özgeçmiş - CV | Cemal Koparan</title>
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Pacifico&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3a0ca3;
+            --accent-color: #f72585;
+            --light-bg: #f8f9fa;
+            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-card: linear-gradient(135deg, #f8f9ff, #e8f4ff);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        :root {
-            --primary-color: #4361ee;
-            --secondary-color: #3f37c9;
-        }
-
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Roboto', sans-serif;
             line-height: 1.6;
             color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding-top: 80px;
+            background-color: var(--light-bg);
+            padding-top: 70px;
         }
 
-        /* Navbar stillerini Bootstrap ile uyumlu hale getir */
+        /* Modern Navbar Styling */
         .navbar {
-            background-color: var(--primary-color) !important;
+            background: var(--primary-color) !important;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(67, 97, 238, 0.3);
+            transition: all 0.3s ease;
         }
 
-        .container {
-            max-width: 900px;
-            margin: 2rem auto;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        .navbar-brand {
+            font-family: 'Pacifico', cursive;
+            font-size: 1.5rem;
+            color: white !important;
+        }
+
+        .navbar-nav .nav-link {
+            color: rgba(255, 255, 255, 0.9) !important;
+            font-weight: 500;
+            margin: 0 10px;
+            padding: 8px 16px !important;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+            .navbar-nav .nav-link:hover,
+            .navbar-nav .nav-link.active {
+                background: rgba(255, 255, 255, 0.2);
+                color: white !important;
+                transform: translateY(-2px);
+            }
+
+        /* Hero Section */
+        .hero-section {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 80px 0;
+            margin-bottom: 60px;
+            position: relative;
             overflow: hidden;
         }
 
-        header {
+            .hero-section::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/><circle cx="20" cy="80" r="0.5" fill="white" opacity="0.1"/><circle cx="90" cy="30" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>') repeat;
+                pointer-events: none;
+            }
+
+        .hero-title {
+            font-family: 'Pacifico', cursive;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        /* Main Container */
+        .main-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin-bottom: 60px;
+        }
+
+        /* Profile Header */
+        .profile-header {
             background: linear-gradient(135deg, #2c3e50, #3498db);
             color: white;
-            padding: 2rem;
+            padding: 3rem 2rem;
             text-align: center;
             position: relative;
         }
 
-            header::before {
+            .profile-header::before {
                 content: '';
                 position: absolute;
                 top: 0;
@@ -58,209 +124,289 @@
                 background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="80" r="1" fill="rgba(255,255,255,0.1)"/></svg>');
             }
 
-        .profile-img {
-            width: 120px;
-            height: 120px;
+        .profile-avatar {
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
-            border: 4px solid white;
-            margin: 0 auto 1rem;
+            border: 5px solid white;
+            margin: 0 auto 2rem;
             background: linear-gradient(45deg, #f39c12, #e74c3c);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3rem;
+            font-size: 4rem;
             position: relative;
             z-index: 1;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
 
-        h1 {
-            font-size: 2.2rem;
+        .profile-name {
+            font-size: 2.5rem;
             margin-bottom: 0.5rem;
             position: relative;
             z-index: 1;
+            font-weight: 700;
         }
 
-        .title {
-            font-size: 1.1rem;
+        .profile-title {
+            font-size: 1.2rem;
             opacity: 0.9;
             position: relative;
             z-index: 1;
+            font-weight: 300;
         }
 
-        main {
-            padding: 2rem;
+        /* Content Area */
+        .content-area {
+            padding: 3rem 2rem;
         }
 
-        section {
-            margin-bottom: 2.5rem;
+        /* Section Styling */
+        .cv-section {
+            margin-bottom: 3rem;
         }
 
-        h2 {
+        .section-title {
             color: #2c3e50;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 3px solid #3498db;
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid var(--primary-color);
             position: relative;
+            font-weight: 700;
         }
 
-            h2::after {
+            .section-title::after {
                 content: '';
                 position: absolute;
                 bottom: -3px;
                 left: 0;
-                width: 50px;
+                width: 80px;
                 height: 3px;
-                background: #e74c3c;
+                background: var(--accent-color);
             }
 
-        .contact-info {
+        /* Contact Info Grid */
+        .contact-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
             margin-bottom: 2rem;
         }
 
-        .contact-item {
+        .contact-card {
             display: flex;
             align-items: center;
-            padding: 0.8rem;
-            background: #f8f9fa;
-            border-radius: 8px;
-            transition: transform 0.3s ease;
+            padding: 1.5rem;
+            background: var(--gradient-card);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(67, 97, 238, 0.1);
         }
 
-            .contact-item:hover {
-                transform: translateY(-2px);
-                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            .contact-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 15px 35px rgba(67, 97, 238, 0.2);
             }
 
         .contact-icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(45deg, #3498db, #2980b9);
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-primary);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-right: 1rem;
+            margin-right: 1.5rem;
             color: white;
-            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
         }
 
-        .education-item {
-            background: linear-gradient(135deg, #f8f9ff, #e8f4ff);
-            padding: 1.5rem;
-            border-radius: 10px;
-            margin-bottom: 1.5rem;
-            border-left: 4px solid #3498db;
-            transition: transform 0.3s ease;
+        .contact-info strong {
+            color: var(--primary-color);
+            font-weight: 600;
         }
+
+        .contact-info a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+            .contact-info a:hover {
+                color: var(--accent-color);
+            }
+
+        /* About Text */
+        .about-text {
+            background: var(--gradient-card);
+            padding: 2rem;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            border-left: 5px solid var(--accent-color);
+            color: #444;
+        }
+
+        /* Education Items */
+        .education-item {
+            background: var(--gradient-card);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            border-left: 5px solid var(--primary-color);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+            .education-item::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: 100px;
+                height: 100px;
+                background: linear-gradient(45deg, rgba(67, 97, 238, 0.1), rgba(247, 37, 133, 0.1));
+                border-radius: 50%;
+                transform: translate(50%, -50%);
+            }
 
             .education-item:hover {
-                transform: translateX(5px);
-                box-shadow: 0 5px 20px rgba(52, 152, 219, 0.2);
+                transform: translateX(10px);
+                box-shadow: 0 15px 40px rgba(67, 97, 238, 0.2);
             }
 
         .education-header {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 0.8rem;
+            margin-bottom: 1rem;
             flex-wrap: wrap;
-            gap: 0.5rem;
+            gap: 1rem;
         }
 
         .degree {
-            font-weight: bold;
+            font-weight: 700;
             color: #2c3e50;
-            font-size: 1.1rem;
+            font-size: 1.3rem;
         }
 
         .university {
-            color: #3498db;
+            color: var(--primary-color);
             font-weight: 600;
-            margin: 0.3rem 0;
+            margin: 0.5rem 0;
+            font-size: 1.1rem;
         }
 
         .duration {
-            background: linear-gradient(45deg, #e74c3c, #c0392b);
+            background: var(--gradient-primary);
             color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 15px;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
             font-size: 0.9rem;
-            font-weight: 500;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
         }
 
         .gpa {
             color: #27ae60;
-            font-weight: bold;
+            font-weight: 700;
             margin-top: 0.5rem;
+            font-size: 1.1rem;
         }
 
+        .education-description {
+            color: #555;
+            line-height: 1.6;
+            margin-top: 1rem;
+        }
+
+        /* Skills Grid */
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
         }
 
         .skill-category {
-            background: linear-gradient(135deg, #fff, #f1f8ff);
-            padding: 1.2rem;
-            border-radius: 10px;
-            border: 1px solid #e3f2fd;
+            background: var(--gradient-card);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(67, 97, 238, 0.1);
+            transition: all 0.3s ease;
         }
+
+            .skill-category:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 15px 35px rgba(67, 97, 238, 0.15);
+            }
 
             .skill-category h3 {
                 color: #2c3e50;
-                margin-bottom: 0.8rem;
-                font-size: 1rem;
+                margin-bottom: 1.5rem;
+                font-size: 1.2rem;
+                font-weight: 700;
+                text-align: center;
             }
 
         .skill-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.5rem;
+            gap: 0.8rem;
+            justify-content: center;
         }
 
         .skill-tag {
-            background: linear-gradient(45deg, #3498db, #2980b9);
+            background: var(--gradient-primary);
             color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 15px;
-            font-size: 0.85rem;
-            transition: transform 0.2s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(67, 97, 238, 0.3);
         }
 
             .skill-tag:hover {
-                transform: scale(1.05);
+                transform: scale(1.1);
+                box-shadow: 0 5px 20px rgba(67, 97, 238, 0.4);
             }
 
-        .about-text {
-            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-            padding: 1.5rem;
-            border-radius: 10px;
-            font-size: 1rem;
-            line-height: 1.7;
-            border-left: 4px solid #28a745;
+        /* Footer */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
         }
 
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .container {
+            body {
+                padding-top: 60px;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .main-container {
                 margin: 1rem;
-                border-radius: 10px;
+                border-radius: 15px;
             }
 
-            header {
-                padding: 1.5rem;
+            .profile-header {
+                padding: 2rem 1rem;
             }
 
-            h1 {
-                font-size: 1.8rem;
+            .profile-name {
+                font-size: 2rem;
             }
 
-            main {
-                padding: 1.5rem;
+            .content-area {
+                padding: 2rem 1rem;
             }
 
             .education-header {
@@ -268,22 +414,44 @@
                 align-items: flex-start;
             }
 
-            .contact-info {
+            .contact-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .navbar-nav .nav-link {
+                margin: 0;
+                padding: 10px 16px !important;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            animation: fadeIn 0.8s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
     </style>
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
-        <div class="container-fluid">
+    <!-- Modern Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
             <a class="navbar-brand" href="index.html">Cemal Koparan</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
+                <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="index.html">Hakkımda</a></li>
                     <li class="nav-item"><a class="nav-link active" href="cv.html">Özgeçmiş</a></li>
                     <li class="nav-item"><a class="nav-link" href="sehrim.html">Şehrim</a></li>
@@ -296,137 +464,205 @@
         </div>
     </nav>
 
+    <!-- Hero Section -->
+    <header class="hero-section">
+        <div class="container text-center">
+            <h1 class="hero-title fade-in">📄 Özgeçmişim</h1>
+            <p class="hero-subtitle fade-in">Profesyonel deneyim ve eğitim geçmişim</p>
+        </div>
+    </header>
+
+    <!-- Main CV Container -->
     <div class="container">
-        <header>
-            <div class="profile-img">👨‍🎓</div>
-            <h1>Cemal Koparan</h1>
-            <p class="title">Bilgisayar Mühendisliği Öğrencisi</p>
-        </header>
+        <div class="main-container fade-in">
+            <!-- Profile Header -->
+            <header class="profile-header">
+                <div class="profile-avatar">👨‍🎓</div>
+                <h1 class="profile-name">Cemal Koparan</h1>
+                <p class="profile-title">Bilgisayar Mühendisliği Öğrencisi</p>
+            </header>
 
-        <main>
-            <section>
-                <h2>İletişim Bilgileri</h2>
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <div class="contact-icon">📧</div>
-                        <div>
-                            <strong>E-posta:</strong><br>
-                            <a href="mailto:cemal.koparan@ogr.sakarya.edu.tr">cemal.koparan@ogr.sakarya.edu.tr</a>
+            <!-- Content Area -->
+            <main class="content-area">
+                <!-- Contact Section -->
+                <section class="cv-section">
+                    <h2 class="section-title">İletişim Bilgileri</h2>
+                    <div class="contact-grid">
+                        <div class="contact-card">
+                            <div class="contact-icon">📧</div>
+                            <div class="contact-info">
+                                <strong>E-posta:</strong><br>
+                                <a href="mailto:cemal.koparan@ogr.sakarya.edu.tr">cemal.koparan@ogr.sakarya.edu.tr</a>
+                            </div>
+                        </div>
+                        <div class="contact-card">
+                            <div class="contact-icon">📱</div>
+                            <div class="contact-info">
+                                <strong>Telefon:</strong><br>
+                                +90 552 202 46 33
+                            </div>
+                        </div>
+                        <div class="contact-card">
+                            <div class="contact-icon">📍</div>
+                            <div class="contact-info">
+                                <strong>Konum:</strong><br>
+                                Sakarya, Türkiye
+                            </div>
+                        </div>
+                        <div class="contact-card">
+                            <div class="contact-icon">💼</div>
+                            <div class="contact-info">
+                                <strong>LinkedIn:</strong><br>
+                                <a href="https://www.linkedin.com/in/cemal-koparan-ba47062a6/" target="_blank">linkedin.com/in/cemal-koparan</a>
+                            </div>
                         </div>
                     </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">📱</div>
-                        <div>
-                            <strong>Telefon:</strong><br>
-                            +90 552 202 46 33
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">📍</div>
-                        <div>
-                            <strong>Konum:</strong><br>
-                            Sakarya, Türkiye
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">💼</div>
-                        <div>
-                            <strong>LinkedIn:</strong><br>
-                            <a href="https://www.linkedin.com/in/cemal-koparan-ba47062a6/" target="_blank">linkedin.com/in/cemal-koparan</a>
-                        </div>
-                    </div>
-                </div>
-            </section>
+                </section>
 
-            <section>
-                <h2>Hakkımda</h2>
-                <div class="about-text">
-                    Sakarya Üniversitesi Bilgisayar Mühendisliği bölümünde eğitim gören tutkulu bir öğrenciyim.
-                    Yazılım geliştirme, web teknolojileri ve modern programlama dilleri konularında kendimi
-                    sürekli geliştirmeye odaklanıyorum. Öğrenmeye açık, takım çalışmasına yatkın ve
-                    teknolojik yenilikleri yakından takip eden bir bireyim.
-                </div>
-            </section>
+                <!-- About Section -->
+                <section class="cv-section">
+                    <h2 class="section-title">Hakkımda</h2>
+                    <div class="about-text">
+                        Sakarya Üniversitesi Bilgisayar Mühendisliği bölümünde eğitim gören tutkulu bir öğrenciyim.
+                        Yazılım geliştirme, web teknolojileri ve modern programlama dilleri konularında kendimi
+                        sürekli geliştirmeye odaklanıyorum. Öğrenmeye açık, takım çalışmasına yatkın ve
+                        teknolojik yenilikleri yakından takip eden bir bireyim. Gelecekte yazılım sektöründe
+                        kendime yer edinmek ve teknoloji dünyasına değerli katkılar sunmak hedefimdedir.
+                    </div>
+                </section>
 
-            <section>
-                <h2>Eğitim</h2>
-                <article class="education-item">
-                    <div class="education-header">
-                        <div>
-                            <div class="degree">Lisans - Bilgisayar Mühendisliği</div>
-                            <div class="university">Sakarya Üniversitesi</div>
-                            <div class="gpa">GPA: 3.2/4.0</div>
+                <!-- Education Section -->
+                <section class="cv-section">
+                    <h2 class="section-title">Eğitim</h2>
+                    <article class="education-item">
+                        <div class="education-header">
+                            <div>
+                                <div class="degree">Lisans - Bilgisayar Mühendisliği</div>
+                                <div class="university">Sakarya Üniversitesi</div>
+                                <div class="gpa">GPA: 3.2/4.0</div>
+                            </div>
+                            <time class="duration">2021 - 2025</time>
                         </div>
-                        <time class="duration">2021 - 2025</time>
-                    </div>
-                    <p>
-                        Yazılım mühendisliği, algoritma ve veri yapıları, veritabanı yönetimi,
-                        web programlama ve mobil uygulama geliştirme konularında kapsamlı eğitim alıyorum.
-                    </p>
-                </article>
+                        <p class="education-description">
+                            Yazılım mühendisliği, algoritma ve veri yapıları, veritabanı yönetimi,
+                            web programlama ve mobil uygulama geliştirme konularında kapsamlı eğitim alıyorum.
+                            Akademik başarımı artırmak ve praktik deneyim kazanmak için çeşitli projelerde yer alıyorum.
+                        </p>
+                    </article>
 
-                <article class="education-item">
-                    <div class="education-header">
-                        <div>
-                            <div class="degree">Lise - Anadolu Lisesi</div>
-                            <div class="university">Mersin Adnan Özçelik Anadolu Lisesi</div>
-                            <div class="gpa">Diploma Notu: 92/100</div>
+                    <article class="education-item">
+                        <div class="education-header">
+                            <div>
+                                <div class="degree">Lise - Anadolu Lisesi</div>
+                                <div class="university">Mersin Adnan Özçelik Anadolu Lisesi</div>
+                                <div class="gpa">Diploma Notu: 92/100</div>
+                            </div>
+                            <time class="duration">2017 - 2021</time>
                         </div>
-                        <time class="duration">2017 - 2021</time>
-                    </div>
-                    <p>Matematik, fizik ve bilgisayar bilimlerine odaklanarak güçlü bir temel oluşturdum.</p>
-                </article>
-            </section>
+                        <p class="education-description">
+                            Matematik, fizik ve bilgisayar bilimlerine odaklanarak güçlü bir temel oluşturdum.
+                            Lise döneminde katıldığım matematik ve bilgisayar olimpiyatlarında başarılı sonuçlar elde ettim.
+                        </p>
+                    </article>
+                </section>
 
-            <section>
-                <h2>Teknik Yetenekler</h2>
-                <div class="skills-grid">
-                    <div class="skill-category">
-                        <h3>Programlama Dilleri</h3>
-                        <div class="skill-tags">
-                            <span class="skill-tag">JavaScript</span>
-                            <span class="skill-tag">Python</span>
-                            <span class="skill-tag">Java</span>
-                            <span class="skill-tag">C++</span>
+                <!-- Skills Section -->
+                <section class="cv-section">
+                    <h2 class="section-title">Teknik Yetenekler</h2>
+                    <div class="skills-grid">
+                        <div class="skill-category">
+                            <h3>Programlama Dilleri</h3>
+                            <div class="skill-tags">
+                                <span class="skill-tag">JavaScript</span>
+                                <span class="skill-tag">Python</span>
+                                <span class="skill-tag">Java</span>
+                                <span class="skill-tag">C++</span>
+                                <span class="skill-tag">PHP</span>
+                            </div>
+                        </div>
+                        <div class="skill-category">
+                            <h3>Web Teknolojileri</h3>
+                            <div class="skill-tags">
+                                <span class="skill-tag">HTML5</span>
+                                <span class="skill-tag">CSS3</span>
+                                <span class="skill-tag">React</span>
+                                <span class="skill-tag">Node.js</span>
+                                <span class="skill-tag">Bootstrap</span>
+                            </div>
+                        </div>
+                        <div class="skill-category">
+                            <h3>Veritabanı</h3>
+                            <div class="skill-tags">
+                                <span class="skill-tag">MySQL</span>
+                                <span class="skill-tag">PostgreSQL</span>
+                                <span class="skill-tag">MongoDB</span>
+                                <span class="skill-tag">SQLite</span>
+                            </div>
+                        </div>
+                        <div class="skill-category">
+                            <h3>Araçlar & Framework</h3>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Git</span>
+                                <span class="skill-tag">VS Code</span>
+                                <span class="skill-tag">Docker</span>
+                                <span class="skill-tag">Laravel</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="skill-category">
-                        <h3>Web Teknolojileri</h3>
-                        <div class="skill-tags">
-                            <span class="skill-tag">HTML5</span>
-                            <span class="skill-tag">CSS3</span>
-                            <span class="skill-tag">React</span>
-                            <span class="skill-tag">Node.js</span>
-                        </div>
-                    </div>
-                    <div class="skill-category">
-                        <h3>Veritabanı</h3>
-                        <div class="skill-tags">
-                            <span class="skill-tag">MySQL</span>
-                            <span class="skill-tag">PostgreSQL</span>
-                            <span class="skill-tag">MongoDB</span>
-                        </div>
-                    </div>
-                    <div class="skill-category">
-                        <h3>Araçlar</h3>
-                        <div class="skill-tags">
-                            <span class="skill-tag">Git</span>
-                            <span class="skill-tag">VS Code</span>
-                            <span class="skill-tag">Docker</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </main>
+                </section>
+            </main>
+        </div>
     </div>
 
     <!-- Footer -->
-    <footer class="bg-dark text-white text-center py-4 mt-5">
+    <footer class="footer">
         <div class="container">
-            <p class="mb-0">© 2025 Cemal Koparan</p>
+            <p class="mb-0">© 2025 Cemal Koparan - Tüm hakları saklıdır.</p>
         </div>
     </footer>
 
+    <!-- Bootstrap JS -->
     <script src="assets/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Smooth scrolling ve modern etkiler
+        document.addEventListener('DOMContentLoaded', function () {
+            // Scroll animasyonları için
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function (entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Animasyon için elementleri gözlemle
+            const animateElements = document.querySelectorAll('.cv-section, .education-item, .skill-category');
+            animateElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'all 0.6s ease';
+                observer.observe(el);
+            });
+
+            // Navbar scroll efekti
+            window.addEventListener('scroll', function () {
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 50) {
+                    navbar.style.background = 'rgba(67, 97, 238, 0.95)';
+                    navbar.style.boxShadow = '0 2px 30px rgba(67, 97, 238, 0.4)';
+                } else {
+                    navbar.style.background = 'var(--primary-color)';
+                    navbar.style.boxShadow = '0 2px 20px rgba(67, 97, 238, 0.3)';
+                }
+            });
+        });
+    </script>
 </body>
 </html>

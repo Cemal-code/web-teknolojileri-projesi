@@ -5,7 +5,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     // Beklenen kullanıcı bilgileri 
     $expected_email = "cemal.koparan@sakarya.edu.tr"; // EMAILINIZ
-    $expected_password = "b241210047"; // SIFRENIZ (öğrenci numaranız)
+    $expected_password = "cemal123"; // SIFRENIZ (demo olan öğrenci numaranız)
     
     if ($email === $expected_email && $password === $expected_password) {
         // Giriş başarılı ise hoşgeldin mesajı göster

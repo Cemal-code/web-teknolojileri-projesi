@@ -5,27 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hakkımda | Cemal Koparan</title>
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Pacifico&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #4361ee;
-            --secondary-color: #3a0ca3;
+            --primary-color: #667eea;
+            --secondary-color: #764ba2;
             --accent-color: #f72585;
-            --light-bg: #f8f9fa;
+            --success-color: #06d6a0;
+            --warning-color: #ffd166;
+            --light-bg: #f8fafc;
+            --dark-text: #2d3748;
+            --light-text: #718096;
+            --border-color: #e2e8f0;
+            --shadow-light: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-medium: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-large: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        * {
+            scroll-behavior: smooth;
         }
 
         body {
             padding-top: 70px;
-            font-family: 'Roboto', sans-serif;
-            background-color: var(--light-bg);
-            color: #333;
+            font-family: 'Inter', 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: var(--dark-text);
+            line-height: 1.6;
         }
 
+        /* Enhanced Hero Section */
         .hero-section {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 120px 0;
-            margin-bottom: 60px;
+            padding: 140px 0;
+            margin-bottom: 80px;
             position: relative;
             overflow: hidden;
         }
@@ -37,20 +51,30 @@
                 left: 0;
                 right: 0;
                 bottom: 0;
-                background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/><circle cx="20" cy="80" r="0.5" fill="white" opacity="0.1"/><circle cx="90" cy="30" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>') repeat;
+                background: radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%), radial-gradient(circle at 40% 40%, rgba(120, 219, 226, 0.2) 0%, transparent 50%);
                 pointer-events: none;
+            }
+
+            .hero-section::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                height: 100px;
+                background: linear-gradient(180deg, transparent 0%, var(--light-bg) 100%);
             }
 
         .hero-title {
             font-family: 'Pacifico', cursive;
-            font-size: 3.2rem;
+            font-size: 3.5rem;
             margin-bottom: 25px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
             animation: fadeInUp 1s ease-out;
         }
 
         .hero-subtitle {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             margin-bottom: 15px;
             font-weight: 300;
             opacity: 0.95;
@@ -58,25 +82,45 @@
         }
 
         .hero-description {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             opacity: 0.9;
             animation: fadeInUp 1s ease-out 0.4s both;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
         .profile-img {
-            width: 240px;
-            height: 240px;
+            width: 260px;
+            height: 260px;
             object-fit: cover;
-            border: 6px solid rgba(255,255,255,0.9);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.3), 0 5px 15px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease;
+            border: 8px solid rgba(255,255,255,0.9);
+            box-shadow: var(--shadow-large);
+            transition: all 0.4s ease;
             animation: fadeIn 1s ease-out;
+            position: relative;
         }
 
             .profile-img:hover {
-                transform: scale(1.05);
+                transform: scale(1.05) rotate(2deg);
+                box-shadow: 0 30px 60px rgba(0,0,0,0.4);
             }
 
+        /* Floating Animation */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Enhanced Animations */
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -90,7 +134,7 @@
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(40px);
             }
 
             to {
@@ -99,40 +143,71 @@
             }
         }
 
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Section Styling */
         .section-title {
             position: relative;
-            margin-bottom: 30px;
-            padding-bottom: 15px;
+            margin-bottom: 50px;
+            padding-bottom: 20px;
+            font-weight: 700;
+            color: var(--dark-text);
         }
 
             .section-title:after {
                 content: "";
                 position: absolute;
-                left: 0;
+                left: 50%;
                 bottom: 0;
-                width: 60px;
+                transform: translateX(-50%);
+                width: 80px;
                 height: 4px;
-                background: var(--accent-color);
+                background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+                border-radius: 2px;
             }
 
+        /* Enhanced About Section */
         .about-section {
             background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            padding: 50px;
-            margin-bottom: 60px;
+            border-radius: 25px;
+            box-shadow: var(--shadow-medium);
+            padding: 60px;
+            margin-bottom: 80px;
             position: relative;
             overflow: hidden;
+            border: 1px solid var(--border-color);
         }
 
             .about-section::before {
                 content: '';
                 position: absolute;
                 top: -50%;
-                right: -50%;
-                width: 100%;
-                height: 100%;
-                background: linear-gradient(45deg, rgba(102, 126, 234, 0.05), rgba(118, 75, 162, 0.05));
+                right: -30%;
+                width: 80%;
+                height: 80%;
+                background: linear-gradient(45deg, rgba(102, 126, 234, 0.05), rgba(247, 37, 133, 0.05));
                 border-radius: 50%;
                 pointer-events: none;
             }
@@ -140,36 +215,59 @@
         .about-text {
             position: relative;
             z-index: 2;
+            animation: slideInLeft 1s ease-out;
         }
 
             .about-text p {
                 font-size: 1.1rem;
                 line-height: 1.8;
-                color: #555;
-                margin-bottom: 20px;
+                color: var(--light-text);
+                margin-bottom: 25px;
             }
 
             .about-text .lead {
-                font-size: 1.3rem;
-                color: #333;
-                font-weight: 400;
-                border-left: 4px solid #667eea;
-                padding-left: 20px;
-                margin-bottom: 30px;
-                background: rgba(102, 126, 234, 0.05);
-                padding: 20px;
-                border-radius: 0 10px 10px 0;
+                font-size: 1.4rem;
+                color: var(--dark-text);
+                font-weight: 500;
+                border-left: 5px solid var(--primary-color);
+                padding-left: 25px;
+                margin-bottom: 35px;
+                background: linear-gradient(90deg, rgba(102, 126, 234, 0.05), transparent);
+                padding: 25px;
+                border-radius: 0 15px 15px 0;
+                position: relative;
             }
 
+                .about-text .lead::before {
+                    content: '💡';
+                    position: absolute;
+                    left: -15px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    font-size: 1.5rem;
+                    background: white;
+                    padding: 5px;
+                    border-radius: 50%;
+                }
+
+        /* Enhanced Info Card */
         .info-card {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             border: none;
-            border-radius: 20px;
+            border-radius: 25px;
             overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            box-shadow: var(--shadow-medium);
             color: white;
             position: relative;
+            animation: slideInRight 1s ease-out;
+            transform: perspective(1000px) rotateY(-5deg);
+            transition: all 0.4s ease;
         }
+
+            .info-card:hover {
+                transform: perspective(1000px) rotateY(0deg) translateY(-10px);
+                box-shadow: var(--shadow-large);
+            }
 
             .info-card::before {
                 content: '';
@@ -178,20 +276,21 @@
                 left: 0;
                 right: 0;
                 bottom: 0;
-                background: linear-gradient(45deg, rgba(255,255,255,0.1), transparent);
+                background: linear-gradient(45deg, rgba(255,255,255,0.1), transparent 50%);
                 pointer-events: none;
             }
 
             .info-card .card-body {
-                padding: 40px;
+                padding: 50px;
                 position: relative;
                 z-index: 2;
             }
 
             .info-card .card-title {
-                font-size: 1.5rem;
-                margin-bottom: 30px;
+                font-size: 1.6rem;
+                margin-bottom: 35px;
                 text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+                font-weight: 600;
             }
 
             .info-card .list-group-item {
@@ -199,9 +298,15 @@
                 border: none;
                 border-bottom: 1px solid rgba(255,255,255,0.2);
                 color: white;
-                padding: 15px 0;
+                padding: 18px 0;
                 backdrop-filter: blur(10px);
+                transition: all 0.3s ease;
             }
+
+                .info-card .list-group-item:hover {
+                    background: rgba(255,255,255,0.2);
+                    transform: translateX(10px);
+                }
 
                 .info-card .list-group-item:last-child {
                     border-bottom: none;
@@ -209,105 +314,339 @@
 
                 .info-card .list-group-item i {
                     color: rgba(255,255,255,0.9);
-                    width: 20px;
+                    width: 25px;
+                    margin-right: 15px;
                 }
 
+        /* Enhanced Interest Cards */
         .interest-icon {
-            font-size: 2.5rem;
-            color: var(--accent-color);
-            margin-bottom: 15px;
+            font-size: 3rem;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
         }
 
         .interest-card {
             border: none;
-            border-radius: 15px;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            box-shadow: var(--shadow-light);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            height: 100%;
+            background: white;
+            border: 2px solid transparent;
+            position: relative;
+        }
+
+            .interest-card::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+                opacity: 0;
+                transition: opacity 0.3s ease;
+                z-index: -1;
+            }
+
+            .interest-card:hover {
+                transform: translateY(-15px) rotate(2deg);
+                box-shadow: var(--shadow-large);
+                border-color: var(--primary-color);
+            }
+
+                .interest-card:hover::before {
+                    opacity: 0.1;
+                }
+
+                .interest-card:hover .interest-icon {
+                    transform: scale(1.2) rotate(10deg);
+                }
+
+            .interest-card .card-body {
+                padding: 40px 30px;
+            }
+
+            .interest-card h3 {
+                font-weight: 600;
+                margin-bottom: 15px;
+                color: var(--dark-text);
+            }
+
+            .interest-card p {
+                color: var(--light-text);
+                line-height: 1.6;
+            }
+
+        /* Game Cards Enhancement */
+        .game-card {
+            border: none;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-light);
             transition: all 0.4s ease;
             height: 100%;
             background: white;
+            position: relative;
         }
 
-            .interest-card:hover {
-                transform: translateY(-8px);
-                box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            .game-card::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: linear-gradient(135deg, rgba(102, 126, 234, 0.9), rgba(247, 37, 133, 0.9));
+                opacity: 0;
+                transition: all 0.3s ease;
+                z-index: 2;
             }
 
+            .game-card:hover::after {
+                opacity: 1;
+            }
+
+            .game-card:hover {
+                transform: translateY(-10px) scale(1.02);
+                box-shadow: var(--shadow-large);
+            }
+
+            .game-card .card-img-top {
+                height: 200px;
+                object-fit: cover;
+                transition: all 0.4s ease;
+            }
+
+            .game-card:hover .card-img-top {
+                transform: scale(1.1);
+            }
+
+            .game-card .card-body {
+                padding: 30px;
+                position: relative;
+                z-index: 3;
+                transition: all 0.3s ease;
+            }
+
+            .game-card:hover .card-body {
+                color: white;
+            }
+
+            .game-card h3 {
+                font-weight: 600;
+                margin-bottom: 15px;
+                transition: all 0.3s ease;
+            }
+
+            .game-card:hover h3 {
+                color: white;
+                transform: translateY(-5px);
+            }
+
+        /* Statistics Section */
+        .stats-section {
+            background: white;
+            border-radius: 25px;
+            padding: 60px;
+            margin-bottom: 80px;
+            box-shadow: var(--shadow-medium);
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 30px;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+        }
+
+            .stat-item:hover {
+                transform: translateY(-10px);
+                box-shadow: var(--shadow-medium);
+            }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: var(--light-text);
+            margin-top: 10px;
+        }
+
+        /* Enhanced Footer */
+        footer {
+            background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+            color: white;
+            padding: 40px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+            footer::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 1px;
+                background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            }
+
+        /* Scroll Animation */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s ease;
+        }
+
+            .scroll-reveal.revealed {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        /* Responsive Design */
         @media (max-width: 768px) {
             .profile-img {
-                width: 200px;
-                height: 200px;
-                margin-bottom: 20px;
+                width: 220px;
+                height: 220px;
+                margin-bottom: 30px;
             }
 
             .hero-title {
-                font-size: 2.5rem;
+                font-size: 2.8rem;
             }
 
             .hero-subtitle {
-                font-size: 1.2rem;
+                font-size: 1.3rem;
             }
 
             .hero-description {
-                font-size: 1rem;
+                font-size: 1.1rem;
             }
 
             .about-section {
-                padding: 30px 20px;
+                padding: 40px 25px;
+            }
+
+            .info-card .card-body {
+                padding: 35px 25px;
+            }
+
+            .stats-section {
+                padding: 40px 25px;
+            }
+        }
+
+        /* Loading Animation */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 1;
+            transition: opacity 0.5s ease;
+        }
+
+            .loading-overlay.fade-out {
+                opacity: 0;
+                pointer-events: none;
+            }
+
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-top: 3px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
             }
         }
     </style>
 </head>
 <body>
-    <!-- Navbar -->
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Navbar  -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="index.html">Cemal Koparan</a>
+            <a class="navbar-brand" href="#">Cemal Koparan</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
+                <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link active" href="index.html">Hakkımda</a></li>
                     <li class="nav-item"><a class="nav-link" href="cv.html">Özgeçmiş</a></li>
                     <li class="nav-item"><a class="nav-link" href="sehrim.html">Şehrim</a></li>
                     <li class="nav-item"><a class="nav-link" href="mirasimiz.html">Mirasımız</a></li>
                     <li class="nav-item"><a class="nav-link" href="ilgi-alanlarim.html">İlgi Alanlarım</a></li>
-                    <li class="nav-item"><a class="nav-link" href="login.html">Giriş Yap</a></li>
+                    <li class="nav-item"><a class="nav-link" href="login.php">Giriş Yap</a></li>
                     <li class="nav-item"><a class="nav-link" href="iletisim.html">İletişim</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Enhanced Hero Section -->
     <header class="hero-section">
         <div class="container text-center">
             <div class="row align-items-center">
                 <div class="col-md-4 mb-4 mb-md-0">
-                    <img src="assets/img/profil.jpg" alt="Profil Fotoğrafı" class="profile-img rounded-circle">
+                    <img src="assets/img/profil.jpg" alt="Profil Fotoğrafı" class="profile-img rounded-circle floating">
                 </div>
                 <div class="col-md-8">
                     <h1 class="hero-title">Merhaba! 👋</h1>
                     <p class="hero-subtitle">Ben <strong>Cemal Koparan</strong></p>
-                    <p class="hero-description">Sakarya Üniversitesi Bilgisayar Mühendisliği öğrencisi, teknoloji tutkunu ve yaratıcı problem çözücü</p>
+                    <p class="hero-description">Sakarya Üniversitesi Bilgisayar Mühendisliği öğrencisi, teknoloji tutkunu ve yaratıcı problem çözücü. Kod yazmaktan yeni teknolojiler keşfetmeye kadar her şeyle ilgileniyorum.</p>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Hakkımda Section -->
-    <section class="container mb-5">
+    <!-- Enhanced About Section -->
+    <section class="container mb-5 scroll-reveal">
         <div class="about-section">
-            <div class="row">
+            <div class="row align-items-center">
                 <div class="col-lg-6">
                     <div class="about-text">
-                        <h2 class="section-title">Merhaba, ben Cemal! </h2>
+                        <h2 class="section-title text-start">Merhaba, ben Cemal! 🚀</h2>
                         <p class="lead">Teknolojinin sınırlarını keşfetmeyi seven, yenilikçi projeler geliştiren ve sürekli öğrenme yolculuğunda olan bir bilgisayar mühendisliği öğrencisiyim.</p>
 
                         <p>Mersin'in güneş dolu sokaklarında büyüdüm, şimdi ise eğitim hayatımı Sakarya'da sürdürüyorum. Kod yazmaktan tutun da yeni teknolojileri keşfetmeye kadar her şey ilgimi çekiyor.</p>
 
-                        
+                        <p>Program geliştirme alanlarında kendimi geliştirmeye odaklanıyorum. Boş zamanlarımda ise sevdiğim oyunları oynuyor ve yeni teknolojik gelişmeleri takip ediyorum.</p>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -315,24 +654,20 @@
                         <div class="card-body">
                             <h3 class="card-title"><i class="fas fa-user-circle me-2"></i>Kişisel Bilgiler</h3>
                             <ul class="list-group list-group-flush">
+                                
                                 <li class="list-group-item">
-                                    <i class="fas fa-birthday-cake me-3"></i>
-                                    <strong>Doğum:</strong> 5 Ekim 2005
-                                </li>
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <strong>Memleket:</strong> Mersin 
                                 <li class="list-group-item">
-                                    <i class="fas fa-map-marker-alt me-3"></i>
-                                    <strong>Memleket:</strong> Mersin (Güneşli şehir! ☀️)
-                                </li>
-                                <li class="list-group-item">
-                                    <i class="fas fa-envelope me-3"></i>
+                                    <i class="fas fa-envelope"></i>
                                     <strong>E-posta:</strong> cemal.koparan@ogr.sakarya.edu.tr
                                 </li>
                                 <li class="list-group-item">
-                                    <i class="fas fa-phone me-3"></i>
+                                    <i class="fas fa-phone"></i>
                                     <strong>Telefon:</strong> 0552 202 46 33
                                 </li>
                                 <li class="list-group-item">
-                                    <i class="fas fa-graduation-cap me-3"></i>
+                                    <i class="fas fa-graduation-cap"></i>
                                     <strong>Eğitim:</strong> Sakarya Üniversitesi<br>
                                     <small>Bilgisayar Mühendisliği</small>
                                 </li>
@@ -344,98 +679,190 @@
         </div>
     </section>
 
-    <!-- Hobilerim Section -->
-    <section class="container mb-5">
+   
+
+    <!-- Enhanced Interest Section -->
+    <section class="container mb-5 scroll-reveal">
         <h2 class="section-title text-center">İlgi Alanlarım</h2>
         <div class="row">
-            <!-- Hobi 1 -->
             <div class="col-md-6 mb-4">
                 <div class="interest-card">
                     <div class="card-body text-center">
                         <div class="interest-icon">
                             <i class="fas fa-gamepad"></i>
                         </div>
-                        <h3>Video Oyunları</h3>
-                        <p>Favori oyunlarım arasında Valorant, FIFA ve The Witcher serisi bulunuyor. Özellikle strateji ve RPG oyunlarını seviyorum.</p>
+                        <h3>Video Oyunları 🎮</h3>
+                        <p>Favori oyunlarım arasında Teamfight Tactics, FIFA ve Dark Souls serisi bulunuyor. Özellikle strateji ve RPG oyunlarını seviyorum. Oyun geliştirme konusunda da kendimi geliştirmeye çalışıyorum.</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Hobi 2 -->
             <div class="col-md-6 mb-4">
                 <div class="interest-card">
                     <div class="card-body text-center">
                         <div class="interest-icon">
                             <i class="fas fa-film"></i>
                         </div>
-                        <h3>Dizi & Film İzlemek</h3>
+                        <h3>Dizi & Film İzlemek 🎬</h3>
                         <p>Bilim kurgu ve fantastik türündeki yapımları takip ediyorum. En sevdiğim diziler arasında Breaking Bad, Black Mirror ve The Walking Dead var.</p>
                     </div>
                 </div>
             </div>
+
+
+            <div class="col-md-6 mb-4">
+                <div class="interest-card">
+                    <div class="card-body text-center">
+                        <div class="interest-icon">
+                            <i class="fas fa-music"></i>
+                        </div>
+                        <h3>Müzik Dinlemek 🎵</h3>
+                        <p>Elektronik müzik, hip hop ve rock türlerini dinlemeyi seviyorum. Kod yazarken ve oyun oynarken müzik dinlemek beni motive ediyor.</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Sevdiğim Oyunlar Section -->
-    <section class="container mb-5">
+    <!-- Enhanced Games Section -->
+    <section class="container mb-5 scroll-reveal">
         <h2 class="section-title text-center">Sevdiğim Oyunlar</h2>
         <div class="row">
-            <!-- Oyun 1 -->
             <div class="col-md-3 col-sm-6 mb-4">
-                <div class="interest-card">
+                <div class="game-card interest-card">
                     <img src="assets/img/metro.jpg" class="card-img-top" alt="Metro serisi">
                     <div class="card-body">
                         <h3>Metro Serisi</h3>
-                        <p class="card-text">Dmitriy Glukhovsky'nin Metro kitap serisinden uyarlanan video oyun serisidir.</p>
+                        <p class="card-text">Dmitriy Glukhovsky'nin Metro kitap serisinden uyarlanan atmosferik video oyun serisi. Post-apokaliptik dünyası ve derinlemesine hikayesi ile etkileyici.</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Oyun 2 -->
             <div class="col-md-3 col-sm-6 mb-4">
-                <div class="interest-card">
+                <div class="game-card interest-card">
                     <img src="assets/img/ds.jpg" class="card-img-top" alt="Dark Souls">
                     <div class="card-body">
                         <h3>Dark Souls</h3>
-                        <p class="card-text">FromSoftware tarafından geliştirilen zorlu aksiyon RPG serisi. Etkileyici atmosferi ve yüksek zorluk seviyesiyle ünlü.</p>
+                        <p class="card-text">FromSoftware tarafından geliştirilen zorlu aksiyon RPG serisi. Etkileyici atmosferi ve yüksek zorluk seviyesiyle ünlü. Sabır ve strateji gerektiren oyun.</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Oyun 3 -->
             <div class="col-md-3 col-sm-6 mb-4">
-                <div class="interest-card">
+                <div class="game-card interest-card">
                     <img src="assets/img/er.jpg" class="card-img-top" alt="Elden Ring">
                     <div class="card-body">
                         <h3>Elden Ring</h3>
-                        <p class="card-text">Etkileyici hikayesi ve geniş dünyasıyla favori aksiyon RPG oyunum.</p>
+                        <p class="card-text">George R.R. Martin ve FromSoftware'nin ortak çalışması. Etkileyici hikayesi ve geniş açık dünyasıyla favori aksiyon RPG oyunum.</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Oyun 4 -->
             <div class="col-md-3 col-sm-6 mb-4">
-                <div class="interest-card">
-                    <img src="assets/img/csgo.jpg" class="card-img-top" alt="CS:GO">
+                <div class="game-card interest-card">
+                    <img src="assets/img/lol.jpg" class="card-img-top" alt="League of Legends">
                     <div class="card-body">
                         <h3>League of Legends</h3>
-                        <p class="card-text">Klasikleşmiş MOBA oyunu. Arkadaşlarımla birlikte oynamayı seviyorum.</p>
+                        <p class="card-text">Klasikleşmiş MOBA oyunu. Arkadaşlarımla birlikte oynamayı seviyorum. Strateji ve takım çalışması gerektiren kompetitif oyun.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="bg-dark text-white text-center py-4">
+    <!-- Enhanced Footer -->
+    <footer class="text-white text-center">
         <div class="container">
-            <p class="mb-2">Cemal Koparan - Kişisel Web Sitesi</p>
-
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="mb-2">© 2025 Cemal Koparan - Kişisel Web Sitesi</p>
+                </div>
+            </div>
         </div>
     </footer>
 
-    <!-- Font -->
+    <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <!-- Bootstrap JS -->
     <script src="assets/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom JavaScript -->
+    <script>
+        // Loading Animation
+        window.addEventListener('load', function () {
+            setTimeout(function () {
+                document.getElementById('loadingOverlay').classList.add('fade-out');
+            }, 1000);
+        });
+
+        // Scroll Reveal Animation
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.scroll-reveal');
+
+            reveals.forEach(reveal => {
+                const windowHeight = window.innerHeight;
+                const elementTop = reveal.getBoundingClientRect().top;
+                const elementVisible = 150;
+
+                if (elementTop < windowHeight - elementVisible) {
+                    reveal.classList.add('revealed');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', revealOnScroll);
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Parallax effect for hero section
+        window.addEventListener('scroll', function () {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.hero-section');
+            const speed = scrolled * 0.5;
+
+            if (parallax) {
+                parallax.style.transform = `translateY(${speed}px)`;
+            }
+        });
+
+        // Dynamic typing effect (optional)
+        function typeWriter(element, text, speed = 100) {
+            let i = 0;
+            element.innerHTML = '';
+
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
+
+        // Initialize animations when page loads
+        document.addEventListener('DOMContentLoaded', function () {
+            // Initial reveal check
+            revealOnScroll();
+
+            // Add stagger animation to cards
+            const cards = document.querySelectorAll('.interest-card, .game-card');
+            cards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+            });
+        });
+    </script>
 </body>
 </html>
