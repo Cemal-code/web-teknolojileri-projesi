@@ -104,11 +104,13 @@
             flex: 1;
             transition: all 0.3s;
             text-align: center;
+            border: none;
+            cursor: pointer;
         }
 
         .btn-primary {
             background-color: var(--primary-color);
-            border: none;
+            color: white;
         }
 
             .btn-primary:hover {
@@ -125,6 +127,34 @@
             .btn-secondary:hover {
                 background-color: #f1f1f1;
             }
+
+        /* Başarı mesajı */
+        .success-message {
+            display: none;
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+            .success-message.show {
+                display: block;
+                animation: slideDown 0.5s ease;
+            }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
         @media (max-width: 576px) {
             .contact-card {
@@ -164,7 +194,12 @@
         <div class="contact-card">
             <h2 class="form-title">Bana Ulaşın</h2>
 
-            <form action="form-basarili.html" method="get">
+            <div id="successMessage" class="success-message">
+                <h4>✅ Mesajınız Başarıyla Gönderildi!</h4>
+                <p>En kısa sürede size geri dönüş yapacağım.</p>
+            </div>
+
+            <form id="contactForm">
                 <div class="form-group">
                     <label for="name" class="form-label">Adınız</label>
                     <input type="text" class="form-control" id="name" name="name" required>
@@ -200,10 +235,79 @@
 
     <footer class="bg-dark text-white text-center py-4 mt-5">
         <div class="container">
-            <p class="mb-0">© 2025 Cemal Koparan </p>
+            <p class="mb-0">© 2025 Cemal Koparan</p>
         </div>
     </footer>
 
     <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
+            e.preventDefault(); // Sayfanın yenilenmesini engelle
+
+            // Form verilerini al
+            const formData = new FormData(this);
+            const name = formData.get('name');
+            const surname = formData.get('surname');
+            const email = formData.get('email');
+            const phone = formData.get('phone');
+            const message = formData.get('message');
+
+            // Basit doğrulama
+            if (!name || !surname || !email || !message) {
+                alert('Lütfen zorunlu alanları doldurun!');
+                return;
+            }
+
+            // E-posta formatı kontrolü
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Lütfen geçerli bir e-posta adresi girin!');
+                return;
+            }
+
+            // Başarı mesajını göster
+            const successMessage = document.getElementById('successMessage');
+            successMessage.classList.add('show');
+
+            // Formu temizle
+            this.reset();
+
+            // 5 saniye sonra başarı mesajını gizle
+            setTimeout(() => {
+                successMessage.classList.remove('show');
+            }, 5000);
+
+            // Konsola log at (geliştirme amaçlı)
+            console.log('Form Gönderildi:', {
+                name: name,
+                surname: surname,
+                email: email,
+                phone: phone,
+                message: message,
+                timestamp: new Date().toISOString()
+            });
+        });
+
+        // Telefon numarası formatlaması
+        document.getElementById('phone').addEventListener('input', function (e) {
+            let value = e.target.value.replace(/\D/g, ''); // Sadece rakamları al
+
+            if (value.length > 0) {
+                if (value.length <= 3) {
+                    value = value;
+                } else if (value.length <= 6) {
+                    value = value.slice(0, 3) + ' ' + value.slice(3);
+                } else if (value.length <= 8) {
+                    value = value.slice(0, 3) + ' ' + value.slice(3, 6) + ' ' + value.slice(6);
+                } else if (value.length <= 10) {
+                    value = value.slice(0, 3) + ' ' + value.slice(3, 6) + ' ' + value.slice(6, 8) + ' ' + value.slice(8);
+                } else {
+                    value = value.slice(0, 3) + ' ' + value.slice(3, 6) + ' ' + value.slice(6, 8) + ' ' + value.slice(8, 10);
+                }
+            }
+
+            e.target.value = value;
+        });
+    </script>
 </body>
 </html>

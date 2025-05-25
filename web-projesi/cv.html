@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Özgeçmiş - CV | Cemal Koparan</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3f37c9;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        /* Navbar stillerini Bootstrap ile uyumlu hale getir */
+        .navbar {
+            background-color: var(--primary-color) !important;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+            header::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="80" r="1" fill="rgba(255,255,255,0.1)"/></svg>');
+            }
+
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid white;
+            margin: 0 auto 1rem;
+            background: linear-gradient(45deg, #f39c12, #e74c3c);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .title {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        main {
+            padding: 2rem;
+        }
+
+        section {
+            margin-bottom: 2.5rem;
+        }
+
+        h2 {
+            color: #2c3e50;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #3498db;
+            position: relative;
+        }
+
+            h2::after {
+                content: '';
+                position: absolute;
+                bottom: -3px;
+                left: 0;
+                width: 50px;
+                height: 3px;
+                background: #e74c3c;
+            }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            padding: 0.8rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+            .contact-item:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            color: white;
+            font-weight: bold;
+        }
+
+        .education-item {
+            background: linear-gradient(135deg, #f8f9ff, #e8f4ff);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #3498db;
+            transition: transform 0.3s ease;
+        }
+
+            .education-item:hover {
+                transform: translateX(5px);
+                box-shadow: 0 5px 20px rgba(52, 152, 219, 0.2);
+            }
+
+        .education-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.8rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .degree {
+            font-weight: bold;
+            color: #2c3e50;
+            font-size: 1.1rem;
+        }
+
+        .university {
+            color: #3498db;
+            font-weight: 600;
+            margin: 0.3rem 0;
+        }
+
+        .duration {
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .gpa {
+            color: #27ae60;
+            font-weight: bold;
+            margin-top: 0.5rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .skill-category {
+            background: linear-gradient(135deg, #fff, #f1f8ff);
+            padding: 1.2rem;
+            border-radius: 10px;
+            border: 1px solid #e3f2fd;
+        }
+
+            .skill-category h3 {
+                color: #2c3e50;
+                margin-bottom: 0.8rem;
+                font-size: 1rem;
+            }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            transition: transform 0.2s ease;
+        }
+
+            .skill-tag:hover {
+                transform: scale(1.05);
+            }
+
+        .about-text {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 1.5rem;
+            border-radius: 10px;
+            font-size: 1rem;
+            line-height: 1.7;
+            border-left: 4px solid #28a745;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 1rem;
+                border-radius: 10px;
+            }
+
+            header {
+                padding: 1.5rem;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            main {
+                padding: 1.5rem;
+            }
+
+            .education-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .contact-info {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">Cemal Koparan</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Hakkımda</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="cv.html">Özgeçmiş</a></li>
+                    <li class="nav-item"><a class="nav-link" href="sehrim.html">Şehrim</a></li>
+                    <li class="nav-item"><a class="nav-link" href="mirasimiz.html">Mirasımız</a></li>
+                    <li class="nav-item"><a class="nav-link" href="ilgi-alanlarim.html">İlgi Alanlarım</a></li>
+                    <li class="nav-item"><a class="nav-link" href="login.php">Giriş Yap</a></li>
+                    <li class="nav-item"><a class="nav-link" href="iletisim.html">İletişim</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header>
+            <div class="profile-img">👨‍🎓</div>
+            <h1>Cemal Koparan</h1>
+            <p class="title">Bilgisayar Mühendisliği Öğrencisi</p>
+        </header>
+
+        <main>
+            <section>
+                <h2>İletişim Bilgileri</h2>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div>
+                            <strong>E-posta:</strong><br>
+                            <a href="mailto:cemal.koparan@ogr.sakarya.edu.tr">cemal.koparan@ogr.sakarya.edu.tr</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📱</div>
+                        <div>
+                            <strong>Telefon:</strong><br>
+                            +90 552 202 46 33
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div>
+                            <strong>Konum:</strong><br>
+                            Sakarya, Türkiye
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">💼</div>
+                        <div>
+                            <strong>LinkedIn:</strong><br>
+                            <a href="https://www.linkedin.com/in/cemal-koparan-ba47062a6/" target="_blank">linkedin.com/in/cemal-koparan</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Hakkımda</h2>
+                <div class="about-text">
+                    Sakarya Üniversitesi Bilgisayar Mühendisliği bölümünde eğitim gören tutkulu bir öğrenciyim.
+                    Yazılım geliştirme, web teknolojileri ve modern programlama dilleri konularında kendimi
+                    sürekli geliştirmeye odaklanıyorum. Öğrenmeye açık, takım çalışmasına yatkın ve
+                    teknolojik yenilikleri yakından takip eden bir bireyim.
+                </div>
+            </section>
+
+            <section>
+                <h2>Eğitim</h2>
+                <article class="education-item">
+                    <div class="education-header">
+                        <div>
+                            <div class="degree">Lisans - Bilgisayar Mühendisliği</div>
+                            <div class="university">Sakarya Üniversitesi</div>
+                            <div class="gpa">GPA: 3.2/4.0</div>
+                        </div>
+                        <time class="duration">2021 - 2025</time>
+                    </div>
+                    <p>
+                        Yazılım mühendisliği, algoritma ve veri yapıları, veritabanı yönetimi,
+                        web programlama ve mobil uygulama geliştirme konularında kapsamlı eğitim alıyorum.
+                    </p>
+                </article>
+
+                <article class="education-item">
+                    <div class="education-header">
+                        <div>
+                            <div class="degree">Lise - Anadolu Lisesi</div>
+                            <div class="university">Mersin Adnan Özçelik Anadolu Lisesi</div>
+                            <div class="gpa">Diploma Notu: 92/100</div>
+                        </div>
+                        <time class="duration">2017 - 2021</time>
+                    </div>
+                    <p>Matematik, fizik ve bilgisayar bilimlerine odaklanarak güçlü bir temel oluşturdum.</p>
+                </article>
+            </section>
+
+            <section>
+                <h2>Teknik Yetenekler</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>Programlama Dilleri</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">Java</span>
+                            <span class="skill-tag">C++</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Web Teknolojileri</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">HTML5</span>
+                            <span class="skill-tag">CSS3</span>
+                            <span class="skill-tag">React</span>
+                            <span class="skill-tag">Node.js</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Veritabanı</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">MySQL</span>
+                            <span class="skill-tag">PostgreSQL</span>
+                            <span class="skill-tag">MongoDB</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Araçlar</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Git</span>
+                            <span class="skill-tag">VS Code</span>
+                            <span class="skill-tag">Docker</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-4 mt-5">
+        <div class="container">
+            <p class="mb-0">© 2025 Cemal Koparan</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

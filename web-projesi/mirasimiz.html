@@ -4,480 +4,396 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mirasımız - Mersin İdman Yurdu | Cemal Koparan</title>
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        :root {
-            --primary-color: #1e3a8a;
-            --secondary-color: #172554;
-            --accent-color: #dc2626;
-            --text-dark: #1f2937;
-            --text-light: #6b7280;
-        }
-
         * {
+            margin: 0;
+            padding: 0;
             box-sizing: border-box;
         }
 
         body {
-            padding-top: 70px;
-            font-family: 'Roboto', sans-serif;
-            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
         }
 
-        .heritage-header {
-            background: linear-gradient(135deg, rgba(30, 58, 138, 0.9), rgba(220, 38, 38, 0.8)), url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+        .navbar {
+            background: #1e3a8a;
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-brand {
             color: white;
-            padding: 120px 0;
+            text-decoration: none;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            padding: 8px 0;
+            transition: color 0.3s;
+        }
+
+            .nav-link:hover, .nav-link.active {
+                color: #60a5fa;
+            }
+
+        .hero {
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.9), rgba(220, 38, 38, 0.8)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect fill="%23333" width="100" height="100"/></svg>');
+            color: white;
             text-align: center;
-            position: relative;
-            overflow: hidden;
+            padding: 150px 20px 80px;
+            margin-top: 70px;
         }
 
-            .heritage-header::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="white" opacity="0.1"/><circle cx="80" cy="40" r="1" fill="white" opacity="0.1"/><circle cx="40" cy="80" r="1.5" fill="white" opacity="0.1"/></svg>');
-                animation: float 20s ease-in-out infinite;
+            .hero h1 {
+                font-size: 3rem;
+                margin-bottom: 20px;
+                font-weight: 700;
             }
 
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0px);
+            .hero p {
+                font-size: 1.2rem;
+                opacity: 0.9;
             }
 
-            50% {
-                transform: translateY(-20px);
-            }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
 
-        .heritage-header h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            margin-bottom: 20px;
-            animation: slideInDown 1s ease-out;
+        .main-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+            margin: 50px auto;
         }
 
-        .heritage-header p {
-            font-size: 1.3rem;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
-            animation: slideInUp 1s ease-out 0.3s both;
-        }
-
-        @keyframes slideInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .content-card {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
         }
 
         .section-title {
-            position: relative;
-            margin-bottom: 40px;
-            padding-bottom: 20px;
-            font-size: 2.2rem;
-            font-weight: 600;
-            color: var(--text-dark);
-        }
-
-            .section-title:after {
-                content: "";
-                position: absolute;
-                left: 0;
-                bottom: 0;
-                width: 80px;
-                height: 4px;
-                background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
-                border-radius: 2px;
-            }
-
-        .history-card {
-            border: none;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-size: 2rem;
+            color: #1e3a8a;
             margin-bottom: 30px;
-            background: white;
-            position: relative;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #dc2626;
+            display: inline-block;
         }
 
-            .history-card::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: -100%;
-                width: 100%;
-                height: 100%;
-                background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-                transition: left 0.5s;
-            }
+        .history-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            color: #555;
+        }
 
-            .history-card:hover {
-                transform: translateY(-15px) scale(1.02);
-                box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-            }
-
-                .history-card:hover::before {
-                    left: 100%;
-                }
-
-        .club-colors {
+        .achievements {
             display: flex;
-            margin: 25px 0;
+            flex-wrap: wrap;
             gap: 15px;
+            margin: 30px 0;
+        }
+
+        .achievement {
+            background: linear-gradient(135deg, #1e3a8a, #dc2626);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .sidebar-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            color: #1e3a8a;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .info-list {
+            list-style: none;
+        }
+
+        .info-item {
+            padding: 12px 0;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            justify-content: space-between;
+        }
+
+            .info-item:last-child {
+                border-bottom: none;
+            }
+
+        .info-label {
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .color-display {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
         }
 
         .color-box {
-            width: 70px;
-            height: 70px;
-            border-radius: 12px;
+            width: 50px;
+            height: 30px;
+            border-radius: 6px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
+            font-size: 0.7rem;
             font-weight: bold;
-            font-size: 0.8rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            transition: transform 0.3s ease;
         }
 
-            .color-box:hover {
-                transform: scale(1.1);
-            }
-
-            .color-box::before {
-                content: '';
-                position: absolute;
-                top: -50%;
-                left: -50%;
-                width: 200%;
-                height: 200%;
-                background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
-                animation: shine 3s infinite;
-            }
-
-        @keyframes shine {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
-            }
+        .red {
+            background: #dc2626;
         }
 
-        .achievement-badge {
-            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-            color: white;
-            padding: 12px 20px;
-            border-radius: 25px;
-            display: inline-block;
-            margin-right: 15px;
-            margin-bottom: 15px;
-            font-size: 0.95rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
+        .blue {
+            background: #1e3a8a;
         }
 
-            .achievement-badge::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: -100%;
-                width: 100%;
-                height: 100%;
-                background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-                transition: left 0.5s;
-            }
-
-            .achievement-badge:hover {
-                transform: translateY(-2px);
-                box-shadow: 0 8px 15px rgba(0,0,0,0.2);
-            }
-
-                .achievement-badge:hover::before {
-                    left: 100%;
-                }
-
-        .navbar {
-            backdrop-filter: blur(10px);
-            background: rgba(30, 58, 138, 0.95) !important;
-        }
-
-        .card-body {
-            padding: 2rem;
-        }
-
-        .list-group-item {
-            border: none;
-            padding: 15px 0;
-            border-bottom: 1px solid #e5e7eb;
-            transition: background-color 0.3s ease;
-        }
-
-            .list-group-item:hover {
-                background-color: #f8f9fa;
-            }
-
-            .list-group-item:last-child {
-                border-bottom: none;
-            }
-
-            .list-group-item strong {
-                color: var(--primary-color);
-                font-weight: 600;
-            }
-
-        .card-title {
-            color: var(--text-dark);
-            font-weight: 600;
-            font-size: 1.4rem;
-            margin-bottom: 1rem;
-        }
-
-        .card-text {
-            color: var(--text-light);
-            line-height: 1.7;
-        }
-
-        .card-img-top {
-            height: 250px;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .history-card:hover .card-img-top {
-            transform: scale(1.05);
-        }
-
-        .container p {
+        .image-placeholder {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #e5e7eb, #d1d5db);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6b7280;
             font-size: 1.1rem;
-            line-height: 1.8;
-            color: var(--text-light);
-            margin-bottom: 1.5rem;
+            margin: 20px 0;
         }
 
-        .heritage-content {
+        .mobile-menu {
+            display: none;
             background: white;
-            border-radius: 20px;
-            padding: 40px;
-            margin: 40px 0;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            color: #1e3a8a;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
         }
 
         @media (max-width: 768px) {
-            .heritage-header h1 {
-                font-size: 2.5rem;
+            .nav-menu {
+                display: none;
             }
 
-            .heritage-header p {
-                font-size: 1.1rem;
+            .mobile-menu {
+                display: block;
             }
 
-            .section-title {
-                font-size: 1.8rem;
+            .hero h1 {
+                font-size: 2rem;
             }
 
-            .card-body {
-                padding: 1.5rem;
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
             }
 
-            .color-box {
-                width: 60px;
-                height: 60px;
+            .content-card, .sidebar-card {
+                padding: 25px;
+            }
+
+            .achievements {
+                justify-content: center;
+            }
+
+            .info-item {
+                flex-direction: column;
+                gap: 5px;
             }
         }
 
-        .fade-in {
-            animation: fadeIn 0.8s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
+        @media (max-width: 480px) {
+            .nav-container {
+                padding: 0 15px;
             }
 
-            to {
-                opacity: 1;
-                transform: translateY(0);
+            .hero {
+                padding: 120px 15px 60px;
+            }
+
+                .hero h1 {
+                    font-size: 1.8rem;
+                }
+
+            .content-card, .sidebar-card {
+                padding: 20px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
-        <div class="container">
-            <a class="navbar-brand fw-bold" href="index.html">
-                <i class="fas fa-user-circle me-2"></i>Cemal Koparan
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="index.html"><i class="fas fa-home me-1"></i>Hakkımda</a></li>
-                    <li class="nav-item"><a class="nav-link" href="cv.html"><i class="fas fa-file-alt me-1"></i>Özgeçmiş</a></li>
-                    <li class="nav-item"><a class="nav-link" href="sehrim.html"><i class="fas fa-city me-1"></i>Şehrim</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="mirasimiz.html"><i class="fas fa-trophy me-1"></i>Mirasımız</a></li>
-                    <li class="nav-item"><a class="nav-link" href="ilgi-alanlarim.html"><i class="fas fa-heart me-1"></i>İlgi Alanlarım</a></li>
-                    <li class="nav-item"><a class="nav-link" href="login.php"><i class="fas fa-sign-in-alt me-1"></i>Giriş Yap</a></li>
-                    <li class="nav-item"><a class="nav-link" href="iletisim.html"><i class="fas fa-envelope me-1"></i>İletişim</a></li>
-                </ul>
-            </div>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a class="navbar-brand" href="index.html">Cemal Koparan</a>
+            <button class="mobile-menu">☰</button>
+            <ul class="nav-menu">
+                <li><a class="nav-link" href="index.html">Hakkımda</a></li>
+                <li><a class="nav-link" href="cv.html">Özgeçmiş</a></li>
+                <li><a class="nav-link" href="sehrim.html">Şehrim</a></li>
+                <li><a class="nav-link active" href="mirasimiz.html">Mirasımız</a></li>
+                <li><a class="nav-link" href="ilgi-alanlarim.html">İlgi Alanlarım</a></li>
+                <li><a class="nav-link" href="login.html">Giriş Yap</a></li>
+                <li><a class="nav-link" href="iletisim.html">İletişim</a></li>
+            </ul>
         </div>
     </nav>
 
-    <!-- Başlık Bölümü -->
-    <header class="heritage-header">
+    <section class="hero">
         <div class="container">
-            <h1 class="display-4 fw-bold">Mersin İdman Yurdu</h1>
-            <p class="lead">Mersin'in Gururu, Türk Futbolunun Köklü Kulübü</p>
-        </div>
-    </header>
-
-    <!-- İçerik Bölümü -->
-    <section class="container my-5">
-        <div class="row">
-            <div class="col-lg-8">
-                <div class="heritage-content fade-in">
-                    <h2 class="section-title"><i class="fas fa-history me-3"></i>Tarihçe</h2>
-                    <p>Mersin İdman Yurdu, 1925 yılında Mersin'de kurulan köklü bir spor kulübüdür. Özellikle futbol branşıyla tanınan kulüp, Mersin'in en eski ve en köklü spor kuruluşlarından biridir.</p>
-
-                    <p>Kurulduğu günden bu yana Mersin halkının gururu olan kulüp, 1983-84 sezonunda Türkiye 1. Futbol Ligi'nde şampiyon olarak büyük bir başarıya imza atmıştır. Ayrıca 1971-72 sezonunda Türkiye Kupası'nda final oynayarak tarihinde önemli bir sayfa açmıştır.</p>
-
-                    <div class="card history-card">
-                        <img src="https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" class="card-img-top" alt="Mersin İdman Yurdu Tarihi">
-                        <div class="card-body">
-                            <h5 class="card-title"><i class="fas fa-flag me-2"></i>Kuruluş Yılları</h5>
-                            <p class="card-text">1925 yılında Mersin'de bir grup spor sever tarafından kurulan kulüp, ilk yıllarında futbolun yanı sıra atletizm ve bisiklet branşlarında da faaliyet göstermiştir.</p>
-                        </div>
-                    </div>
-
-                    <h3 class="section-title mt-5"><i class="fas fa-medal me-3"></i>Başarılar</h3>
-                    <div>
-                        <span class="achievement-badge"><i class="fas fa-crown me-2"></i>1. Lig Şampiyonluğu (1983-84)</span>
-                        <span class="achievement-badge"><i class="fas fa-trophy me-2"></i>Türkiye Kupası Finalisti (1971-72)</span>
-                        <span class="achievement-badge"><i class="fas fa-star me-2"></i>2. Lig Şampiyonlukları (3 kez)</span>
-                        <span class="achievement-badge"><i class="fas fa-futbol me-2"></i>Süper Lig'de 12 sezon</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4">
-                <div class="card history-card fade-in">
-                    <div class="card-body">
-                        <h5 class="card-title"><i class="fas fa-info-circle me-2"></i>Takım Bilgileri</h5>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">
-                                <strong><i class="fas fa-tag me-2"></i>Tam Adı:</strong> Mersin İdman Yurdu
-                            </li>
-                            <li class="list-group-item">
-                                <strong><i class="fas fa-palette me-2"></i>Renkler:</strong>
-                                <div class="club-colors">
-                                    <div class="color-box" style="background: linear-gradient(135deg, #ff0000, #cc0000);">
-                                        Kırmızı
-                                    </div>
-                                    <div class="color-box" style="background: linear-gradient(135deg, #00008b, #000066);">
-                                        Lacivert
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                <strong><i class="fas fa-calendar-alt me-2"></i>Kuruluş:</strong> 1925
-                            </li>
-                            <li class="list-group-item">
-                                <strong><i class="fas fa-stadium me-2"></i>Stadyum:</strong> Mersin Stadyumu (25,534)
-                            </li>
-                            <li class="list-group-item">
-                                <strong><i class="fas fa-user-tie me-2"></i>Başkan:</strong> Mustafa Ersoy
-                            </li>
-                            <li class="list-group-item">
-                                <strong><i class="fas fa-globe me-2"></i>Resmi Site:</strong>
-                                <a href="http://www.mersinidmanyurdu.com.tr" target="_blank" class="text-decoration-none">
-                                    mersinidmanyurdu.com.tr <i class="fas fa-external-link-alt ms-1"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="card history-card mt-4 fade-in">
-                    <img src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" class="card-img-top" alt="Mersin İdman Yurdu Forması">
-                    <div class="card-body">
-                        <h5 class="card-title"><i class="fas fa-tshirt me-2"></i>Efsane Formalar</h5>
-                        <p class="card-text">Kırmızı-lacivert çubuklu formasıyla Türk futbolunun en ikonik görsellerinden birine sahiptir.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row mt-5">
-            <div class="col-12">
-                <div class="heritage-content fade-in">
-                    <h3 class="section-title"><i class="fas fa-users me-3"></i>Mersin'de Futbol Kültürü</h3>
-                    <p>Mersin İdmanYurdu, şehrin sosyal ve kültürel hayatında önemli bir yere sahiptir. Taraftarlarıyla bütünleşen kulüp, özellikle 1980'li yıllarda "Torosların Çocukları" sloganıyla büyük bir taraftar kitlesine ulaşmıştır.</p>
-
-                    <p>Kulübün taraftar grubu olan "Çukurovalılar", Türkiye'nin en coşkulu taraftar grupları arasında gösterilmektedir. Mersin Stadyumu'nda oynanan maçlarda ortaya çıkan atmosfer, şehrin sosyal dokusuna renk katmaktadır.</p>
-                </div>
-            </div>
+            <h1>Mersin İdman Yurdu</h1>
+            <p>Mersin'in Gururu, Türk Futbolunun Köklü Kulübü</p>
         </div>
     </section>
 
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <div class="container">
+        <div class="main-content">
+            <main class="content-card">
+                <h2 class="section-title">Tarihçe</h2>
+
+                <p class="history-text">
+                    Mersin İdman Yurdu, 1925 yılında Mersin'de kurulan köklü bir spor kulübüdür.
+                    Özellikle futbol branşıyla tanınan kulüp, Mersin'in en eski ve en köklü spor
+                    kuruluşlarından biridir.
+                </p>
+
+                <p class="history-text">
+                    Kurulduğu günden bu yana Mersin halkının gururu olan kulüp, 1983-84 sezonunda
+                    Türkiye 1. Futbol Ligi'nde şampiyon olarak büyük bir başarıya imza atmıştır.
+                    Ayrıca 1971-72 sezonunda Türkiye Kupası'nda final oynayarak tarihinde önemli
+                    bir sayfa açmıştır.
+                </p>
+
+                <div class="image-placeholder">
+                    Mersin İdman Yurdu Tarihi Fotoğrafı
+                </div>
+
+                <h3 class="section-title">Başarılar</h3>
+                <div class="achievements">
+                    <span class="achievement">1. Lig Şampiyonluğu (1983-84)</span>
+                    <span class="achievement">Türkiye Kupası Finalisti (1971-72)</span>
+                    <span class="achievement">2. Lig Şampiyonlukları (3 kez)</span>
+                    <span class="achievement">Süper Lig'de 12 sezon</span>
+                </div>
+
+                <h3 class="section-title">Mersin'de Futbol Kültürü</h3>
+                <p class="history-text">
+                    Mersin İdman Yurdu, şehrin sosyal ve kültürel hayatında önemli bir yere sahiptir.
+                    Taraftarlarıyla bütünleşen kulüp, özellikle 1980'li yıllarda "Torosların Çocukları"
+                    sloganıyla büyük bir taraftar kitlesine ulaşmıştır.
+                </p>
+
+                <p class="history-text">
+                    Kulübün taraftar grubu olan "Çukurovalılar", Türkiye'nin en coşkulu taraftar
+                    grupları arasında gösterilmektedir. Mersin Stadyumu'nda oynanan maçlarda ortaya
+                    çıkan atmosfer, şehrin sosyal dokusuna renk katmaktadır.
+                </p>
+            </main>
+
+            <aside>
+                <div class="sidebar-card">
+                    <h3 class="card-title">Takım Bilgileri</h3>
+                    <ul class="info-list">
+                        <li class="info-item">
+                            <span class="info-label">Tam Adı:</span>
+                            <span>Mersin İdman Yurdu</span>
+                        </li>
+                        <li class="info-item">
+                            <span class="info-label">Kuruluş:</span>
+                            <span>1925</span>
+                        </li>
+                        <li class="info-item">
+                            <span class="info-label">Stadyum:</span>
+                            <span>Mersin Stadyumu (25,534)</span>
+                        </li>
+                        <li class="info-item">
+                            <span class="info-label">Başkan:</span>
+                            <span>Mustafa Ersoy</span>
+                        </li>
+                        <li class="info-item">
+                            <span class="info-label">Renkler:</span>
+                            <div class="color-display">
+                                <div class="color-box red">Kırmızı</div>
+                                <div class="color-box blue">Lacivert</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-card">
+                    <h3 class="card-title">Efsane Formalar</h3>
+                    <div class="image-placeholder">
+                        Forma Görseli
+                    </div>
+                    <p style="color: #666; font-size: 0.95rem; margin-top: 15px;">
+                        Kırmızı-lacivert çubuklu formasıyla Türk futbolunun en ikonik
+                        görsellerinden birine sahiptir.
+                    </p>
+                </div>
+            </aside>
+        </div>
+    </div>
+
     <script>
-        // Sayfa yüklendiğinde animasyonları başlat
-        document.addEventListener('DOMContentLoaded', function () {
-            const cards = document.querySelectorAll('.history-card');
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, { threshold: 0.1 });
-
-            cards.forEach(card => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(30px)';
-                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                observer.observe(card);
-            });
+        // Basit mobil menü toggle
+        document.querySelector('.mobile-menu')?.addEventListener('click', function () {
+            const menu = document.querySelector('.nav-menu');
+            if (menu.style.display === 'flex') {
+                menu.style.display = 'none';
+            } else {
+                menu.style.display = 'flex';
+                menu.style.flexDirection = 'column';
+                menu.style.position = 'absolute';
+                menu.style.top = '100%';
+                menu.style.left = '0';
+                menu.style.right = '0';
+                menu.style.background = '#1e3a8a';
+                menu.style.padding = '20px';
+            }
         });
     </script>
 </body>
