@@ -10,7 +10,7 @@ Bu repo, 2024-2025 Bahar Dönemi Web Teknolojileri dersi için hazırladığım 
 
 ## Web Sitesi linki
 
-https://ckwebprojesi.fwh.is/
+https://webprojem.ct.ws/
 
 ## Proje Özellikleri
 
