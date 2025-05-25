@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Bilgileri</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <style>
+        .data-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+        }
+    </style>
+</head>
+<body>
+    <div class="data-container">
+        <h2 class="mb-4">📬 Gönderilen Form Verileri</h2>
+        <div id="form-data"></div>
+        <a href="iletisim.html" class="btn btn-primary mt-4">Yeni Mesaj Gönder</a>
+    </div>
+
+    <script>
+        // LocalStorage'dan verileri çek
+        const storedData = localStorage.getItem('formData');
+        const displayDiv = document.getElementById('form-data');
+
+        if (storedData) {
+            const formData = JSON.parse(storedData);
+            let htmlContent = `
+                <p><strong>Ad:</strong> ${formData.name}</p>
+                <p><strong>Soyad:</strong> ${formData.surname}</p>
+                <p><strong>E-posta:</strong> ${formData.email}</p>
+                ${formData.phone ? `<p><strong>Telefon:</strong> ${formData.phone}</p>` : ''}
+                <p><strong>Mesaj:</strong><br>${formData.message.replace(/\n/g, '<br>')}</p>
+            `;
+            displayDiv.innerHTML = htmlContent;
+
+            // Veriyi temizle (isteğe bağlı)
+            localStorage.removeItem('formData');
+        } else {
+            displayDiv.innerHTML = '<div class="alert alert-warning">❌ Görüntülenecek veri bulunamadı!</div>';
+        }
+    </script>
+</body>
+</html>

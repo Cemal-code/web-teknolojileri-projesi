@@ -6,6 +6,7 @@
     <title>İletişim | Cemal Koparan</title>
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
     <style>
         :root {
             --primary-color: #4361ee;
@@ -33,6 +34,7 @@
             box-shadow: 0 8px 30px rgba(0,0,0,0.08);
             padding: 40px;
             transition: transform 0.3s ease;
+            margin-bottom: 30px;
         }
 
             .contact-card:hover {
@@ -125,10 +127,9 @@
         }
 
             .btn-secondary:hover {
-                background-color: #f1f1f1;
+                background-color: #f1f1f1);
             }
 
-        /* Başarı mesajı */
         .success-message {
             display: none;
             background: linear-gradient(135deg, #28a745, #20c997);
@@ -137,12 +138,19 @@
             border-radius: 8px;
             margin-bottom: 20px;
             text-align: center;
+            animation: slideDown 0.5s ease;
         }
 
             .success-message.show {
                 display: block;
-                animation: slideDown 0.5s ease;
             }
+
+        .error-message {
+            color: #dc3545;
+            font-size: 0.875rem;
+            margin-top: 5px;
+            display: block;
+        }
 
         @keyframes slideDown {
             from {
@@ -166,10 +174,32 @@
                 gap: 10px;
             }
         }
+
+        /* Veri Görüntüleme Sayfası Stilleri */
+        .data-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+            padding: 40px;
+            margin: 40px auto;
+            max-width: 600px;
+        }
+
+            .data-card p {
+                font-size: 1.1rem;
+                margin-bottom: 15px;
+            }
+
+        .message-box {
+            background: var(--light-gray);
+            padding: 15px;
+            border-radius: 8px;
+            white-space: pre-line;
+        }
     </style>
 </head>
 <body>
-    <!-- Navbar  -->
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
         <div class="container">
             <a class="navbar-brand" href="index.html">Cemal Koparan</a>
@@ -190,123 +220,144 @@
         </div>
     </nav>
 
-    <div class="contact-container">
-        <div class="contact-card">
+    <div id="app" class="contact-container">
+        <!-- Form Bölümü -->
+        <div class="contact-card" v-if="!showData">
             <h2 class="form-title">Bana Ulaşın</h2>
 
-            <div id="successMessage" class="success-message">
+            <div class="success-message" :class="{show: showSuccess}">
                 <h4>✅ Mesajınız Başarıyla Gönderildi!</h4>
-                <p>En kısa sürede size geri dönüş yapacağım.</p>
+                <p>3 saniye sonra sonuç sayfasına yönlendirileceksiniz...</p>
             </div>
 
-            <form id="contactForm">
+            <form @submit.prevent="validateForm">
                 <div class="form-group">
-                    <label for="name" class="form-label">Adınız</label>
-                    <input type="text" class="form-control" id="name" name="name" required>
+                    <label class="form-label">Adınız</label>
+                    <input type="text" class="form-control" v-model="formData.name">
+                    <span class="error-message">{{ errors.name }}</span>
                 </div>
 
                 <div class="form-group">
-                    <label for="surname" class="form-label">Soyadınız</label>
-                    <input type="text" class="form-control" id="surname" name="surname" required>
+                    <label class="form-label">Soyadınız</label>
+                    <input type="text" class="form-control" v-model="formData.surname">
+                    <span class="error-message">{{ errors.surname }}</span>
                 </div>
 
                 <div class="form-group">
-                    <label for="email" class="form-label">E-posta Adresiniz</label>
-                    <input type="email" class="form-control" id="email" name="email" required placeholder="ornek@email.com">
+                    <label class="form-label">E-posta</label>
+                    <input type="email" class="form-control" v-model="formData.email">
+                    <span class="error-message">{{ errors.email }}</span>
                 </div>
 
                 <div class="form-group">
-                    <label for="phone" class="form-label">Telefon Numaranız (İsteğe Bağlı)</label>
-                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="5__ ___ __ __">
+                    <label class="form-label">Telefon (İsteğe Bağlı)</label>
+                    <input type="tel" class="form-control" v-model="formData.phone" @input="formatPhone">
+                    <span class="error-message">{{ errors.phone }}</span>
                 </div>
 
                 <div class="form-group">
-                    <label for="message" class="form-label">Mesajınız</label>
-                    <textarea class="form-control" id="message" name="message" required placeholder="Mesajınızı buraya yazın..."></textarea>
+                    <label class="form-label">Mesajınız</label>
+                    <textarea class="form-control" v-model="formData.message"></textarea>
+                    <span class="error-message">{{ errors.message }}</span>
                 </div>
 
                 <div class="btn-group">
-                    <button type="reset" class="btn btn-secondary">Formu Temizle</button>
+                    <button type="button" class="btn btn-secondary" @click="resetForm">Formu Temizle</button>
                     <button type="submit" class="btn btn-primary">Mesajı Gönder</button>
                 </div>
             </form>
         </div>
+
+        <!-- Veri Görüntüleme Bölümü -->
+        <div class="data-card" v-if="showData">
+            <h2 class="form-title">📨 Gönderilen Mesaj</h2>
+            <div class="data-content">
+                <p><strong>Ad:</strong> {{ formData.name }}</p>
+                <p><strong>Soyad:</strong> {{ formData.surname }}</p>
+                <p><strong>E-posta:</strong> {{ formData.email }}</p>
+                <p v-if="formData.phone"><strong>Telefon:</strong> {{ formData.phone }}</p>
+                <p><strong>Mesaj:</strong></p>
+                <div class="message-box">{{ formData.message }}</div>
+            </div>
+            <div class="btn-group mt-4">
+                <button class="btn btn-primary" @click="showData = false">Yeni Mesaj Gönder</button>
+            </div>
+        </div>
     </div>
 
-    <footer class="bg-dark text-white text-center py-4 mt-5">
-        <div class="container">
-            <p class="mb-0">© 2025 Cemal Koparan</p>
-        </div>
-    </footer>
-
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script>
-        document.getElementById('contactForm').addEventListener('submit', function (e) {
-            e.preventDefault(); // Sayfanın yenilenmesini engelle
+        new Vue({
+            el: '#app',
+            data: {
+                formData: {
+                    name: '',
+                    surname: '',
+                    email: '',
+                    phone: '',
+                    message: ''
+                },
+                errors: {},
+                showSuccess: false,
+                showData: false
+            },
+            methods: {
+                validateForm() {
+                    this.errors = {};
 
-            // Form verilerini al
-            const formData = new FormData(this);
-            const name = formData.get('name');
-            const surname = formData.get('surname');
-            const email = formData.get('email');
-            const phone = formData.get('phone');
-            const message = formData.get('message');
+                    // Validasyon Kuralları
+                    if (!this.formData.name.trim()) this.errors.name = "Bu alan zorunludur";
+                    if (!this.formData.surname.trim()) this.errors.surname = "Bu alan zorunludur";
 
-            // Basit doğrulama
-            if (!name || !surname || !email || !message) {
-                alert('Lütfen zorunlu alanları doldurun!');
-                return;
-            }
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(this.formData.email)) {
+                        this.errors.email = "Geçersiz e-posta formatı";
+                    }
 
-            // E-posta formatı kontrolü
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                alert('Lütfen geçerli bir e-posta adresi girin!');
-                return;
-            }
+                    if (this.formData.phone && !/^5\d{2} \d{3} \d{2} \d{2}$/.test(this.formData.phone)) {
+                        this.errors.phone = "Geçersiz format (5XX XXX XX XX)";
+                    }
 
-            // Başarı mesajını göster
-            const successMessage = document.getElementById('successMessage');
-            successMessage.classList.add('show');
+                    if (!this.formData.message.trim()) this.errors.message = "Lütfen mesajınızı yazın";
 
-            // Formu temizle
-            this.reset();
+                    // Hata yoksa gönder
+                    if (Object.keys(this.errors).length === 0) {
+                        this.showSuccess = true;
+                        setTimeout(() => {
+                            this.showData = true;
+                            this.showSuccess = false;
+                        }, 3000);
+                    }
+                },
 
-            // 10 saniye sonra başarı mesajını gizle
-            setTimeout(() => {
-                successMessage.classList.remove('show');
-            }, 10000);
+                resetForm() {
+                    this.formData = {
+                        name: '',
+                        surname: '',
+                        email: '',
+                        phone: '',
+                        message: ''
+                    };
+                    this.errors = {};
+                },
 
-            // Konsola log at (geliştirme amaçlı)
-            console.log('Form Gönderildi:', {
-                name: name,
-                surname: surname,
-                email: email,
-                phone: phone,
-                message: message,
-                timestamp: new Date().toISOString()
-            });
-        });
+                formatPhone(event) {
+                    let value = event.target.value.replace(/\D/g, '');
+                    if (value.length > 10) value = value.slice(0, 10);
 
-        // Telefon numarası formatlaması
-        document.getElementById('phone').addEventListener('input', function (e) {
-            let value = e.target.value.replace(/\D/g, ''); // Sadece rakamları al
+                    let formatted = '';
+                    const parts = [3, 3, 2, 2];
+                    let index = 0;
 
-            if (value.length > 0) {
-                if (value.length <= 3) {
-                    value = value;
-                } else if (value.length <= 6) {
-                    value = value.slice(0, 3) + ' ' + value.slice(3);
-                } else if (value.length <= 8) {
-                    value = value.slice(0, 3) + ' ' + value.slice(3, 6) + ' ' + value.slice(6);
-                } else if (value.length <= 10) {
-                    value = value.slice(0, 3) + ' ' + value.slice(3, 6) + ' ' + value.slice(6, 8) + ' ' + value.slice(8);
-                } else {
-                    value = value.slice(0, 3) + ' ' + value.slice(3, 6) + ' ' + value.slice(6, 8) + ' ' + value.slice(8, 10);
+                    parts.forEach(part => {
+                        if (value.slice(index, index + part)) {
+                            formatted += value.slice(index, index + part) + ' ';
+                            index += part;
+                        }
+                    });
+
+                    this.formData.phone = formatted.trim();
                 }
             }
-
-            e.target.value = value;
         });
     </script>
 </body>
